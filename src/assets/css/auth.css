@@ -1,0 +1,145 @@
+.input-group{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    display: flex !important;
+    justify-content: flex-end;
+    align-items: center !important;
+    margin-top: 2rem;
+}
+
+.input-group > input{
+    position: absolute !important;
+    width: 100% !important;
+    height: 100%;
+    color: #131e22;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 18px;
+    border: 2px solid #d4d4d4;
+    outline: none !important;
+    box-shadow: none;
+    border-radius: .25rem !important;
+    transition: all .2s ease-in-out;
+}
+
+.input-group > input:focus{
+    border: 2px solid #1b00ff;
+    box-shadow: 0 0 1.3px 1.3px rgba(0, 0, 255, 1);
+}
+
+.input-group > input:hover{
+    border: 2px solid #1b00ff;
+}
+
+.input-group-icon{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: relative;
+    background-color: white;
+    height: calc(100% - 5px);
+    z-index: 10;
+    margin-right: 2px;
+}
+
+.btn-blue{
+    color: #fff;
+    background-color: #1b00ff;
+    border: 1px solid #1b00ff;
+    width: 100%;
+    margin-top: 20px;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+    outline: none !important;
+    text-align: center;
+}
+
+.btn-blue:hover{
+    background-color: #1c0abe;
+}
+
+.or-auth{
+    font-size: 16px;
+    line-height: 1.62em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn-blueOutline{
+    color: #1b00ff;
+    background-color: white;
+    border: none;
+    width: 100%;
+    max-width: 70%;
+    margin: auto;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+    text-align: center;
+    display: block;
+    font-size: 18px !important ;
+    text-decoration: underline;
+}
+
+/* .btn-blueOutline:hover{
+    color: white;
+    background-color: #1b00ff;
+    border: 1px solid #1b00ff;
+} */
+
+.auth-row{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 20px;
+    overflow: scroll;
+}
+
+.error-validasi{
+    width: 280px;
+    position: absolute !important;
+    left: 3%;
+    top: 3%;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,0,0,.1);
+    transition: all .35s ease !important;
+    z-index: 20;
+    background-color: rgba(255, 50, 50, 0.993) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.success-validasi{
+    width: 280px;
+    position: absolute !important;
+    left: 3%;
+    top: 3%;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,0,0,.1);
+    transition: all .35s ease !important;
+    z-index: 20;
+    background-color: limegreen !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* .error-validasi.active{
+    transform: translatex(0) scale(1);   
+} */
+
+.error-0{
+    top: 3%;
+}
+
+.error-1{
+    top: 11%;
+}
+
+.error-2{
+    top: 19%;
+}

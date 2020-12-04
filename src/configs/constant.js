@@ -1,0 +1,21 @@
+export const loginConstant = {
+    LOGIN_REQUEST: "LOGIN_REQUEST",
+    LOGIN_SUCCESS: "LOGIN_SUCCESS",
+    LOGIN_FAILURE: "LOGIN_FAILURE",
+}
+
+export const logoutConstant = {
+    LOGOUT_REQUEST: "LOGOUT_REQUEST",
+    LOGOUT_SUCCESS: "LOGOUT_SUCCESS",
+    LOGOUT_FAILURE: "LOGOUT_FAILURE"
+}
+
+export const userConstant = {
+    REGISTER_REQUEST: "REGISTER_REQUEST",
+    REGISTER_SUCCESS: "REGISTER_SUCCESS",
+    REGISTER_FAILURE: "REGISTER_FAILURE"
+}
+
+export const categoryConstant = {
+    GETALLCATEGORY: "GETALLCATEGORY"
+}
