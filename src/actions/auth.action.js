@@ -7,7 +7,7 @@ const login = (user) => {
 
 
         dispatch({ type: loginConstant.LOGIN_REQUEST })
-        setTimeout(async () => {
+    
             try {
                 const res = await axiosApi.post('/admin/login', user);
                 if (res.status === 200) {
@@ -35,7 +35,7 @@ const login = (user) => {
                     }
                 })
             }
-        }, 1000)
+
 
     }
 }
@@ -68,7 +68,7 @@ export const logout = () => {
     return async (dispatch) => {
 
         dispatch({ type: logoutConstant.LOGOUT_REQUEST })
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/logout');
                 if (res.status === 200) {
@@ -83,7 +83,7 @@ export const logout = () => {
                     type: logoutConstant.LOGOUT_FAILURE
                 })
             }
-        }, 1000)
+    
 
     }
 }
@@ -121,7 +121,7 @@ export const updateName = (data) => {
     return async (dispatch) => {
 
         dispatch({type: loginConstant.UPDATENAME_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updatename', data)
                 if(res.status == 200){
@@ -143,7 +143,7 @@ export const updateName = (data) => {
                     }
                 })
             }
-        }, 1000)
+        
 
     }
 }
@@ -151,7 +151,7 @@ export const updateName = (data) => {
 export const updatePassword = (data) => {
     return async (dispatch) => {
         dispatch({type: loginConstant.UPDATEPASSWORD_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updatepassword', data)
                 if(res.status == 200){
@@ -173,14 +173,14 @@ export const updatePassword = (data) => {
                     }
                 })
             }   
-        }, 1000)
+        
     }
 }
 
 export const updateUmur = (data) => {
     return async (dispatch) => {
         dispatch({type: loginConstant.UPDATEUMUR_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updateumur', data)
                 if(res.status == 200){
@@ -202,14 +202,14 @@ export const updateUmur = (data) => {
                     }
                 })
             }   
-        }, 1000)
+        
     }
 }
 
 export const updateTanggalLahir = (data) => {
     return async (dispatch) => {
         dispatch({type: loginConstant.UPDATETANGGALLAHIR_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updatetanggallahir', data)
                 if(res.status == 200){
@@ -231,14 +231,14 @@ export const updateTanggalLahir = (data) => {
                     }
                 })
             }   
-        }, 1000)
+        
     }
 }
 
 export const updateTelepon = (data) => {
     return async (dispatch) => {
         dispatch({type: loginConstant.UPDATEPASSWORD_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updatetelepon', data)
                 if(res.status == 200){
@@ -260,14 +260,14 @@ export const updateTelepon = (data) => {
                     }
                 })
             }   
-        }, 1000)
+
     }
 }
 
 export const updateAlamat = (data) => {
     return async (dispatch) => {
         dispatch({type: loginConstant.UPDATEPASSWORD_REQUEST})
-        setTimeout(async () => {
+        
             try {
                 const res = await axiosApi.post('/admin/updatealamat', data)
                 if(res.status == 200){
@@ -289,7 +289,7 @@ export const updateAlamat = (data) => {
                     }
                 })
             }   
-        }, 1000)
+        
     }
 }
 
