@@ -5,7 +5,7 @@ import store from '../store'
 const token = window.localStorage.getItem('token');
 
 const axiosApi = axios.create({
-    baseURL: 'http://localhost:4000/v1/api',
+    baseURL: 'https://apitokoonline.herokuapp.com/v1/api',
     headers: {
         "Authorization": token ? `Bearer ${token}` : ""
     }
