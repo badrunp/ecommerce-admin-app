@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import './style.css'
 
 function Input(props) {
@@ -10,8 +11,8 @@ function Input(props) {
                 <Form.Group>
                     {props.label && (<Form.Label>{props.label}</Form.Label>)}
                     <div className="box-input">
-                        {props.iconLeft && props.iconLeft}
-                        <Form.Control {...props} type={props.type} value={props.value} onChange={props.onChange} placeholder={props.placeholder} className="input-all" />
+                        {props.iconleft && props.iconleft}
+                        <Form.Control {...props} type={props.type} value={props.value} onKeyUp={props.onKeyUp} onChange={props.onChange} placeholder={props.placeholder} />
                         {props.icon ? props.icon : null}
                     </div>
                 </Form.Group>

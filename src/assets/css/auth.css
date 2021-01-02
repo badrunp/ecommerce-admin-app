@@ -27,13 +27,10 @@
 }
 
 .input-group > input:focus{
-    border: 2px solid #1b00ff;
-    box-shadow: 0 0 1.3px 1.3px rgba(0, 0, 255, 1);
+    border: 2px solid #0F66BD ;
+    box-shadow: 0 0 1.3px 1.3px #0F66BD;
 }
 
-.input-group > input:hover{
-    border: 2px solid #1b00ff;
-}
 
 .input-group-icon{
     width: 15%;
@@ -50,8 +47,8 @@
 
 .btn-blue{
     color: #fff;
-    background-color: #1b00ff;
-    border: 1px solid #1b00ff;
+    background-color: #0F66BD ;
+    border: 1px solid #0F66BD ;
     width: 100%;
     margin-top: 20px;
     transition: 0.2s ease-in-out;
@@ -61,7 +58,7 @@
 }
 
 .btn-blue:hover{
-    background-color: #1c0abe;
+    background-color: #0F66BD ;
 }
 
 .or-auth{
@@ -72,12 +69,11 @@
 }
 
 .btn-blueOutline{
-    color: #1b00ff;
+    color: #0F66BD ;
     background-color: white;
     border: none;
-    width: 100%;
-    max-width: 70%;
-    margin: auto;
+    width: max-content;
+
     font-weight: 600;
     transition: 0.2s ease-in-out;
     text-align: center;
@@ -88,8 +84,8 @@
 
 /* .btn-blueOutline:hover{
     color: white;
-    background-color: #1b00ff;
-    border: 1px solid #1b00ff;
+    background-color: #0F66BD ;
+    border: 1px solid #0F66BD ;
 } */
 
 .auth-row{
@@ -100,46 +96,38 @@
     overflow: scroll;
 }
 
-.error-validasi{
-    width: 280px;
-    position: absolute !important;
-    left: 3%;
-    top: 3%;
-    text-align: center;
-    box-shadow: 0 0 25px rgba(0,0,0,.1);
-    transition: all .35s ease !important;
-    z-index: 20;
-    background-color: rgba(255, 50, 50, 0.993) !important;
-    color: white !important;
-    border: none !important;
+
+
+.auth-data{
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.success-validasi{
-    width: 280px;
-    position: absolute !important;
-    left: 3%;
-    top: 3%;
-    text-align: center;
-    box-shadow: 0 0 25px rgba(0,0,0,.1);
-    transition: all .35s ease !important;
-    z-index: 20;
-    background-color: limegreen !important;
-    color: white !important;
-    border: none !important;
+.auth-data span{
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: 500;
 }
 
-/* .error-validasi.active{
-    transform: translatex(0) scale(1);   
-} */
-
-.error-0{
-    top: 3%;
+.eye-password{
+    cursor: pointer;
 }
 
-.error-1{
-    top: 11%;
+.is-invalid-input{
+    border: 1px solid #dc3545 !important;
 }
 
-.error-2{
-    top: 19%;
+.is-valid-input{
+    border: 1px solid #28a745 !important;
+}
+
+
+.is-invalid-input:focus{
+    box-shadow: 0 0 1.3px 1.3px #dc3545 !important;
+}
+
+.is-valid-input:focus{
+    box-shadow: 0 0 1.3px 1.3px #28a745 !important;
 }

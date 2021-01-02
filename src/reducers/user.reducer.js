@@ -1,7 +1,11 @@
 import { userConstant } from "../configs/constant"
 
 const initialState = {
-    error: "",
+    error: {
+        name: [],
+        email: [],
+        password: []
+    },
     message: "",
     loading: false
 }
@@ -19,7 +23,11 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: false,
                 message: action.payload.message,
-                error: ""
+                error: {
+                    name: [],
+                    email: [],
+                    password: []
+                }
             }
             break;
         case userConstant.REGISTER_FAILURE:
@@ -27,13 +35,21 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: false,
                 message: "",
-                error: action.payload.error
+                error: {
+                    name: action.payload.name,
+                    email: action.payload.email,
+                    password: action.payload.password
+                }
             }
             break;
         case 'TIMEOUTREGISTER':
             state = {
                 ...state,
-                error: "",
+                error: {
+                    name: [],
+                    email: [],
+                    password: []
+                },
                 message: ""
             }
             break;

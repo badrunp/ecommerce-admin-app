@@ -1,0 +1,26 @@
+.footer {
+  position: relative;
+  transform: translatey(10px);
+  margin-top: 50px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(90, 62, 62, 0.03);
+  border: 1px solid #e5e9f2;
+}
+
+.copyright {
+  padding: 40px 10px;
+  text-align: center;
+  background-color: white;
+}
+
+.copyright p {
+  margin: 0;
+  color: #333;
+  padding: 0;
+}
+
+@media (max-width: 720px) {
+  .copyright p {
+    font-size: 14px;
+  }
+}

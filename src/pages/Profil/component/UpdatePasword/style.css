@@ -1,0 +1,24 @@
+.form-ubah-password{
+    width: 100%;
+    height: max-content;
+    position: relative;
+    overflow: hidden;
+    padding: 0 30px 40px;
+}
+
+.btn-ubah-password{
+    background-color: #0F66BD;
+    padding: 8px 20px;
+    border: none;
+    outline: none !important;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.btn-ubah-password:hover{
+    opacity: .9;
+}

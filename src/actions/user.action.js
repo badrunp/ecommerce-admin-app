@@ -18,10 +18,17 @@ export const register = (user) => {
                     })
                 }
             } catch (error) {
+                console.log(error.response);
+                const {message} = error.response.data;
+                const name = message.filter(item => item.param == 'fullName');
+                const email = message.filter(item => item.param == 'email');
+                const password = message.filter(item => item.param == 'password');
                 dispatch({
                     type: userConstant.REGISTER_FAILURE,
                     payload: {
-                        error: error.response.data.message
+                        name: name,
+                        email: email,
+                        password: password
                     }
                 })
             }

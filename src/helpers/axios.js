@@ -23,7 +23,7 @@ axiosApi.interceptors.request.use((req) => {
 axiosApi.interceptors.response.use((res) => {
     return res;
 }, (error) => {
-    const status = error.response ? error.response.status : 500;
+    const status = error.response ? error.response.status : 400;
     if(status === 500){
         localStorage.clear()
         store.dispatch({

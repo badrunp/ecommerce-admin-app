@@ -1,44 +1,46 @@
-
-.box-input{
-    position: relative;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+.box-input {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-.icon-input-clear{
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(-5%, -50%);
-    font-size: 25px;
-    cursor: pointer;
-    color: grey;
-    background-color: white;
-  }
+.icon-input-clear {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-3%, -50%);
+  font-size: 25px;
+  cursor: pointer;
+  color: grey;
+  background-color: white;
+}
 
-  .iconLeft{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(50%, -50%);
-    font-size: 25px;
-    cursor: pointer;
-    color: grey;
-    background-color: white;
-  }
-  
-  .icon-input-clear:hover{
-    color: #333;
-  }
+.iconLeft {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  font-size: 25px;
+  cursor: pointer;
+  color: grey;
+  background-color: white;
+}
 
-  .search-big{
-    font-size: 30px;
-  }
-  
-  .close{
-    color: white !important;
-    opacity: 1 !important;
-    outline: none !important;
-  }
+.icon-input-clear:hover {
+  color: #333;
+}
 
+.search-lg {
+  font-size: 30px;
+}
+
+.close {
+  color: white !important;
+  opacity: 1 !important;
+  outline: none !important;
+}
+/* 
+  .input-all{
+    padding: 40px;
+  } */

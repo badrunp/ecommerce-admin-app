@@ -1,16 +1,27 @@
 .btn-modal{
-    background-color: #007bff !important;
+    background-color: #0F66BD;
     color: white !important; 
     outline: none !important;
     box-shadow: none !important;
+    font-size: 18px !important;
+    padding: 7px 10px !important;
 }
 
 .btn-modal:hover{
-    background-color: rgb(11, 11, 255) !important;
+    opacity: .8;
 }
 
 .modal-header{
-    background-color: #007bff;
+    background-color: #0F66BD;
     color: white;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
 }
+
+
+.modal-content{
+    border-radius: 0px !important;
+    border: none !important;
+}
+
 

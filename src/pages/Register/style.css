@@ -27,7 +27,7 @@
     font-size: 30px;
     font-weight: 700;
     text-align: center;
-    color: #1b00ff;
+    color: #0F66BD ;
     -webkit-font-smoothing: antialiased;
     line-height: 1.2;
 }
@@ -42,4 +42,17 @@
 
 .passwordMessage{
     top: 23%
+}
+
+.login-auth{
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-auth span{
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: 600;
 }
