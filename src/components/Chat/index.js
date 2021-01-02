@@ -28,9 +28,11 @@ class Chat extends React.Component {
         this.socket = io(server)
 
         this.socket.on('outputMessage', msg => {
-            if(msg[0].userId._id != this.props.auth.user._id){
-                this.props.dispatch(addNotificationChats(this.props.auth.user._id))
-            }
+            // if(msg[0].userId._id != this.props.auth.user._id){
+            //     this.props.dispatch(addNotificationChats(this.props.auth.user._id))
+            // }
+            console.log(msg[0].userId._id);
+            console.log(this.props.auth.user._id);
             this.props.dispatch(outputChat())
         })
     }
