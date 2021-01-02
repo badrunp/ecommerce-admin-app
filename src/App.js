@@ -38,8 +38,8 @@ function App() {
 
   return (
     <>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
+      <Link to="/masuk">Login</Link>
+      <Link to="/daftar">Register</Link>
       <Routes />
     </>
   );
