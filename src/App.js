@@ -7,7 +7,6 @@ import { getAllCategory, getAllProduct, initialData, outputChat, userIsLogin } f
 import 'react-checkbox-tree/lib/react-checkbox-tree.css'
 import io from 'socket.io-client'
 import { checkDarkMode } from './actions/darkmode.action';
-import { Link } from 'react-router-dom';
 
 
 function App() {
@@ -38,8 +37,6 @@ function App() {
 
   return (
     <>
-      <Link to="/masuk">Login</Link>
-      <Link to="/daftar">Register</Link>
       <Routes />
     </>
   );

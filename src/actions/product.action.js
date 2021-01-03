@@ -31,7 +31,7 @@ export const addProduct = (form) => {
     return async (dispatch) => {
 
         dispatch({ type: productConstant.ADDPRODUCT_REQUEST })
-        
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/product/create', form)
                 if (res.status == 200) {
@@ -52,7 +52,7 @@ export const addProduct = (form) => {
                     }
                 })
             }
-        
+        }, 1000)
 
     }
 }
@@ -61,7 +61,7 @@ export const deleteProduct = (data) => {
     return async (dispatch) => {
 
         dispatch({ type: productConstant.DELETEPRODUCT_REQUEST })
-        
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/product/delete', data)
                 if (res.status == 200) {
@@ -82,7 +82,7 @@ export const deleteProduct = (data) => {
                     }
                 })
             }
-        
+        }, 1000)
 
     }
 }
@@ -91,7 +91,7 @@ export const updateProduct = (form) => {
     return async (dispatch) => {
 
         dispatch({ type: productConstant.UPDATEPRODUCT_REQUEST })
-        
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/product/update', form);
                 if(res.status === 200){
@@ -112,7 +112,7 @@ export const updateProduct = (form) => {
                     }
                 })
             }
-        
+        }, 1000)
 
     }   
 }

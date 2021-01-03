@@ -42,7 +42,7 @@ export const addCategory = (form) => {
     return async (dispatch) => {
 
         dispatch({ type: categoryConstant.ADDCATEGORY_REQUEST })
-      
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/category/create', form);
                 if (res.status == 200) {
@@ -63,7 +63,7 @@ export const addCategory = (form) => {
                     }
                 })
             }
-      
+        }, 1000)
     }
 }
 
@@ -72,7 +72,7 @@ export const deleteCategory = (ids) => {
     return async (dispatch) => {
 
         dispatch({type: categoryConstant.DELETECATEGORY_REQUEST})
-
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/category/delete', {
                     payload: {
@@ -95,7 +95,7 @@ export const deleteCategory = (ids) => {
                     type: categoryConstant.DELETECATEGORY_FAILURE
                 })
             }
-    
+        }, 1000)
     }
 }
 
@@ -103,7 +103,7 @@ export const updateCategory = (form) => {
     return async (dispatch) => {
         
         dispatch({ type: categoryConstant.UPDATECATEGORY_REQUEST})
-
+        setTimeout( async () => {
             try {
                 const res = await axiosApi.post('/category/update', form);
                 if(res.status === 200){
@@ -125,7 +125,7 @@ export const updateCategory = (form) => {
                     }
                 })
             }
-
+        },1000)
 
     }
 }
@@ -134,7 +134,7 @@ export const deleteAllCategory = () => {
     return async (dispatch) => {
 
         dispatch({type: categoryConstant.DELETEALLCATEGORY_REQUEST})
-
+        setTimeout(async () => {
             try {
                 const res = await axiosApi.post('/category/deleteall',)
                 if (res.status == 200) {
@@ -153,7 +153,7 @@ export const deleteAllCategory = () => {
                     type: categoryConstant.DELETEALLCATEGORY_FAILURE
                 })
             }
-
+        }, 1000)
     }
 }
 

@@ -1,3 +1,0 @@
-#0F66BD => main color
-#a6aab4 => color link sidebar
-#1b223c => bg sidebar

@@ -6,7 +6,7 @@ export const register = (user) => {
     return async (dispatch) => {
 
         dispatch({ type: userConstant.REGISTER_REQUEST })
- 
+        setTimeout( async () => {
             try {
                 const res = await axiosApi.post('/admin/register', user)
                 if (res.status === 200) {
@@ -32,7 +32,7 @@ export const register = (user) => {
                     }
                 })
             }
-   
+        }, 1000)
     }
 }
 
