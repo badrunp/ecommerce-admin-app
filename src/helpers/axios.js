@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { logoutConstant } from '../configs/constant';
+import { baseUrl } from '../configs/urlConfigs';
 import store from '../store'
 
 const token = window.localStorage.getItem('token');
 
 const axiosApi = axios.create({
-    baseURL: 'http://localhost:4000/v1/api',
+    baseURL: `${baseUrl}/v1/api`,
     headers: {
         "Authorization": token ? `Bearer ${token}` : ""
     }
