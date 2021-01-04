@@ -81,7 +81,9 @@ function Product(props) {
 
     const productsTotalMax = (products, data = []) => {
         for (let product of products) {
-            data.push({ Nama: product.name, Jumlah: product.quantity })
+            if(product.quantity > 0 ){
+                data.push({ Nama: product.name, Jumlah: product.quantity })
+            }
         }
         const sh = data.sort((a, b) => b.Jumlah - a.Jumlah);
         const sp = sh.slice(0, 7);

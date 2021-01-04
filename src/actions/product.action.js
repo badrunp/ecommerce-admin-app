@@ -34,7 +34,7 @@ export const addProduct = (form) => {
       const res = await axiosApi.post("/product/create", form);
       console.log(res);
       if (res.status === 200) {
-        dispatch(getAllProduct());
+        // dispatch(getAllProduct());
         dispatch({
           type: productConstant.ADDPRODUCT_SUCCESS,
           payload: {

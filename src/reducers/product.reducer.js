@@ -1,3 +1,4 @@
+import { updateProduct } from "../actions";
 import { productConstant } from "../configs/constant";
 
 const initialState = {
@@ -41,6 +42,8 @@ export default (state = initialState, action) => {
         error: null,
         message: action.payload.message,
         products: [...state.products, action.payload.product],
+        productsLength: state.productsLength + 1,
+        productsS: [...state.productsS, action.payload.product],
         updateGrapich: true,
       };
       break;
