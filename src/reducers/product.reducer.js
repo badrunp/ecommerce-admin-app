@@ -62,10 +62,15 @@ export default (state = initialState, action) => {
       };
       break;
     case productConstant.DELETEPRODUCT_SUCCESS:
+      const pid = action.payload.data.productId;
+      const updateProducts = state.products.filter((item) => item._id != pid);
       state = {
         ...state,
         loading: false,
         error: null,
+        products: updateProducts,
+        productsS: updateProducts,
+        productsLength: state.productsLength - 1,
         message: action.payload.message,
         updateGrapich: true,
       };
