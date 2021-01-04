@@ -87,12 +87,14 @@ export const updateProduct = (form) => {
 
     try {
       const res = await axiosApi.post("/product/update", form);
+      console.log(res);
       if (res.status === 200) {
         dispatch(getAllProduct());
         dispatch({
           type: productConstant.UPDATEPRODUCT_SUCCESS,
           payload: {
             message: res.data.message,
+            product: res.data.product,
           },
         });
       }

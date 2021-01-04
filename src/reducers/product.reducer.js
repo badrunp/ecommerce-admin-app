@@ -84,10 +84,32 @@ export default (state = initialState, action) => {
       };
       break;
     case productConstant.UPDATEPRODUCT_SUCCESS:
+      const newProduct = action.payload.product;
+      console.log(newProduct);
+      const products = state.products.map((u) =>
+        u._id !== newProduct._id
+          ? u
+          : {
+              _id: newProduct._id,
+              name: newProduct.name,
+              slug: newProduct.slug,
+              description: newProduct.description,
+              price: newProduct.price,
+              quantity: newProduct.quantity,
+              category: newProduct.category,
+              reviews: newProduct.reviews,
+              productPictures: newProduct.productPictures,
+              createdBy: newProduct.createdBy,
+              updatedAt: newProduct.updatedAt,
+              createdAt: newProduct.createdAt,
+            }
+      );
       state = {
         ...state,
         loading: false,
         message: action.payload.message,
+        products: products,
+        productsS: products,
         updateGrapich: true,
       };
       break;
