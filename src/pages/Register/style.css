@@ -1,58 +1,58 @@
-.register{
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    background-color: #ecf0f4;
-    overflow: hidden;
+.register {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #ecf0f4;
+  overflow: hidden;
 }
 
-.register-page{
-    object-fit: cover;
-    width: 100%;
+.register-page {
+  object-fit: cover;
+  width: 100%;
 }
 
-.register-box{
-    max-width: 420px;
-    width: 100%;
-    padding: 40px 20px;
-    margin: 5px auto;
-    background-color: white;
-    box-shadow: 0 0 28px rgba(0,0,0,.08);
-    font-size: 1rem;
-    line-height:  1.5;
-    border-radius: 10px;
+.register-box {
+  max-width: 420px;
+  width: 100%;
+  padding: 40px 20px;
+  margin: 5px auto;
+  background-color: white;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 10px;
 }
 
-.register-title h2{
-    font-size: 30px;
-    font-weight: 700;
-    text-align: center;
-    color: #0F66BD ;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.2;
+.register-title h2 {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  color: #0f66bd;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.2;
 }
 
-.namaMessage{
-    top: 3%;
+.namaMessage {
+  top: 3%;
 }
 
-.emailMessage{
-    top: 13%
+.emailMessage {
+  top: 13%;
 }
 
-.passwordMessage{
-    top: 23%
+.passwordMessage {
+  top: 23%;
 }
 
-.login-auth{
-    /* background-color: red; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login-auth {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-auth span{
-    display: inline-block;
-    margin-right: 10px;
-    font-weight: 600;
+.login-auth span {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 600;
 }
