@@ -32,7 +32,6 @@ export const addProduct = (form) => {
     dispatch({ type: productConstant.ADDPRODUCT_REQUEST });
     try {
       const res = await axiosApi.post("/product/create", form);
-      console.log(res);
       if (res.status === 200) {
         dispatch(getAllProduct());
         dispatch({
@@ -40,6 +39,7 @@ export const addProduct = (form) => {
           payload: {
             message: res.data.message,
             product: res.data.product,
+            productHistory: res.data.productH,
           },
         });
       }
@@ -61,12 +61,13 @@ export const deleteProduct = (data) => {
     try {
       const res = await axiosApi.post("/product/delete", data);
       if (res.status == 200) {
-        // dispatch(getAllProduct());
+        dispatch(getAllProduct());
         dispatch({
           type: productConstant.DELETEPRODUCT_SUCCESS,
           payload: {
             message: res.data.message,
             data: data,
+            productHistory: res.data.productH,
           },
         });
       }
@@ -88,7 +89,6 @@ export const updateProduct = (form) => {
 
     try {
       const res = await axiosApi.post("/product/update", form);
-      console.log(res);
       if (res.status === 200) {
         dispatch(getAllProduct());
         dispatch({
@@ -96,6 +96,7 @@ export const updateProduct = (form) => {
           payload: {
             message: res.data.message,
             product: res.data.product,
+            productHistory: res.data.productH,
           },
         });
       }
@@ -120,7 +121,6 @@ export const deleteHistoryProduct = (id) => {
         },
       });
       if (res.status === 200) {
-        // dispatch(initialData())
         dispatch(getAllProduct());
       }
     } catch (error) {

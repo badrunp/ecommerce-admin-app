@@ -36,6 +36,10 @@ export default (state = initialState, action) => {
       };
       break;
     case productConstant.ADDPRODUCT_SUCCESS:
+      const updateHistoryC = [
+        action.payload.productHistory,
+        ...state.productHistory,
+      ];
       state = {
         ...state,
         loading: false,
@@ -45,6 +49,7 @@ export default (state = initialState, action) => {
         productsLength: state.productsLength + 1,
         productsS: [...state.productsS, action.payload.product],
         updateGrapich: true,
+        productHistory: updateHistoryC,
       };
       break;
     case productConstant.ADDPRODUCT_FAILURE:
@@ -64,6 +69,10 @@ export default (state = initialState, action) => {
     case productConstant.DELETEPRODUCT_SUCCESS:
       const pid = action.payload.data.productId;
       const updateProducts = state.products.filter((item) => item._id != pid);
+      const updateHistoryD = [
+        action.payload.productHistory,
+        ...state.productHistory,
+      ];
       state = {
         ...state,
         loading: false,
@@ -73,6 +82,7 @@ export default (state = initialState, action) => {
         productsLength: state.productsLength - 1,
         message: action.payload.message,
         updateGrapich: true,
+        productHistory: updateHistoryD,
       };
       break;
     case productConstant.DELETEPRODUCT_FAILURE:
@@ -90,7 +100,6 @@ export default (state = initialState, action) => {
       break;
     case productConstant.UPDATEPRODUCT_SUCCESS:
       const newProduct = action.payload.product;
-      console.log(newProduct);
       const products = state.products.map((u) =>
         u._id !== newProduct._id
           ? u
@@ -109,6 +118,10 @@ export default (state = initialState, action) => {
               createdAt: newProduct.createdAt,
             }
       );
+      const updateHistoryU = [
+        action.payload.productHistory,
+        ...state.productHistory,
+      ];
       state = {
         ...state,
         loading: false,
@@ -116,6 +129,7 @@ export default (state = initialState, action) => {
         products: products,
         productsS: products,
         updateGrapich: true,
+        productHistory: updateHistoryU,
       };
       break;
     case productConstant.UPDATEPRODUCT_FAILURE:
