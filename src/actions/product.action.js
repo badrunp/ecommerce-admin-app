@@ -32,12 +32,14 @@ export const addProduct = (form) => {
     dispatch({ type: productConstant.ADDPRODUCT_REQUEST });
     try {
       const res = await axiosApi.post("/product/create", form);
-      if (res.status == 200) {
+      console.log(res);
+      if (res.status === 200) {
         dispatch(getAllProduct());
         dispatch({
           type: productConstant.ADDPRODUCT_SUCCESS,
           payload: {
             message: res.data.message,
+            product: res.data.product,
           },
         });
       }
