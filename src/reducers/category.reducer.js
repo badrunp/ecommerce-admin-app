@@ -181,6 +181,11 @@ export default (state = initialState, action) => {
         error: null,
         message: action.payload.message,
         updateGrapich: true,
+        categories: [],
+        categoryLength: 0,
+        categoryData: [],
+        per_page: null,
+        current_page: null,
       };
       break;
     case categoryConstant.DELETEALLCATEGORY_FAILURE:

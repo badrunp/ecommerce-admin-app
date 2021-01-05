@@ -1,7 +1,5 @@
-import { createStore } from "redux";
 import { categoryConstant } from "../configs/constant";
 import axiosApi from "../helpers/axios";
-import { initialData } from "./initialData.action";
 
 const getAllCategory = (page, search) => {
   return async (dispatch) => {
