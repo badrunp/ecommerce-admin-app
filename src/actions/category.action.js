@@ -105,6 +105,7 @@ export const updateCategory = (form) => {
     dispatch({ type: categoryConstant.UPDATECATEGORY_REQUEST });
     try {
       const res = await axiosApi.post("/category/update", form);
+      console.log(res);
       if (res.status === 200) {
         // dispatch(initialData())
         dispatch(getAllCategory());
@@ -112,6 +113,8 @@ export const updateCategory = (form) => {
           type: categoryConstant.UPDATECATEGORY_SUCCESS,
           payload: {
             message: res.data.message,
+            categories: res.data.category,
+            categories_: res.data.category_,
           },
         });
       }

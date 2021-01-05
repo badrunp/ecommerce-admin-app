@@ -156,6 +156,8 @@ export default (state = initialState, action) => {
         error: null,
         message: action.payload.message,
         updateGrapich: true,
+        categories: action.payload.categories,
+        categoryData: action.payload.categories_,
       };
       break;
     case categoryConstant.UPDATECATEGORY_FAILURE:
