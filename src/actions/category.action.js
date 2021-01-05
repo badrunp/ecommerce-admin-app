@@ -1,3 +1,4 @@
+import { createStore } from "redux";
 import { categoryConstant } from "../configs/constant";
 import axiosApi from "../helpers/axios";
 import { initialData } from "./initialData.action";
@@ -45,12 +46,13 @@ export const addCategory = (form) => {
     try {
       const res = await axiosApi.post("/category/create", form);
       if (res.status == 200) {
-        // dispatch(initialData())
         dispatch(getAllCategory());
         dispatch({
           type: categoryConstant.ADDCATEGORY_SUCCESS,
           payload: {
             message: res.data.message,
+            category: res.data.category,
+            categoryH: res.data.categoryH,
           },
         });
       }
@@ -74,6 +76,7 @@ export const deleteCategory = (ids) => {
           ids,
         },
       });
+      console.log(res);
       if (res.status == 200) {
         // dispatch(initialData())
         dispatch(getAllCategory());
@@ -81,6 +84,10 @@ export const deleteCategory = (ids) => {
           type: categoryConstant.DELETECATEGORY_SUCCESS,
           payload: {
             message: res.data.message,
+            ids: ids,
+            categories: res.data.category,
+            categoryData: res.data.categoryData,
+            // categoryHS: res.data.categoryHS,
           },
         });
       }
