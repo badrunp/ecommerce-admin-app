@@ -47,7 +47,7 @@ class Chat extends React.Component {
           outputMsg: msg,
         });
       }
-      this.props.dispatch(outputChat(this.state.outputMsg));
+      //   this.props.dispatch(outputChat(this.state.outputMsg));
     });
   }
 
@@ -77,6 +77,16 @@ class Chat extends React.Component {
     const chat = this.state.message;
     const userId = this.props.auth.user._id;
     const time = moment().format("HH:mm");
+
+    // const userM = this.props.auth.map((item) => item._id === userId);
+
+    const msgObj = {
+      message: chat,
+      time: time,
+      userId: this.props.auth.user,
+    };
+
+    this.props.dispatch(outputChat(msgObj));
 
     if (this.state.message) this.socket.emit("message", { chat, userId, time });
 
