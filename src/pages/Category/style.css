@@ -456,6 +456,9 @@
   .category-table-data-remove {
     flex-direction: column;
   }
+  .category-notfound h2 {
+    font-size: 20px;
+  }
   .table-data {
     margin-top: 10px;
   }

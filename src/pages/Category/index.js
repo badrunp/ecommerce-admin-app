@@ -867,7 +867,12 @@ function Category() {
                 {category.loadingSearch ? (
                   <div
                     className=""
-                    style={{ position: "absolute", left: "-35px", top: "8px" }}
+                    style={{
+                      position: "absolute",
+                      left: "-15%",
+                      top: "35%",
+                      transform: "translate(0,-50%)",
+                    }}
                   >
                     <ImSpinner9 className="loading" />
                   </div>
