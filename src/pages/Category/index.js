@@ -540,7 +540,11 @@ function Category() {
     const cari = {
       search: search,
     };
-    dispatch(getAllCategory(1, cari, true));
+    if (search.length > 0) {
+      dispatch(getAllCategory(1, cari, true));
+    } else {
+      dispatch(getAllCategory(1, cari, true));
+    }
   };
 
   return (
@@ -880,7 +884,9 @@ function Category() {
                 />
               </div>
             </div>
-            {category.categoryData.length > 0 ? (
+
+            {category.loadingSearch ? null : category.categoryData.length >
+              0 ? (
               <div className="category-pagination-main">
                 {pages.map((number) => (
                   // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>

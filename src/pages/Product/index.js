@@ -400,7 +400,11 @@ function Product(props) {
       search: search,
     };
 
-    dispatch(getAllProduct(1, searchi, true));
+    if (search.length > 0) {
+      dispatch(getAllProduct(1, searchi, true));
+    } else {
+      dispatch(getAllProduct(1, searchi, true));
+    }
   };
 
   const renderModalProductImage = () => {
