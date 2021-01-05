@@ -277,7 +277,7 @@ function TambahProduct(props) {
                 {lengthDescription ? (
                   <div
                     style={{ display: "block", margin: "10px 0 10px 0" }}
-                    className="invalid-feedback"
+                    className="invalid-feedback mt-1"
                   >
                     Tidak boleh kosong!
                   </div>
@@ -290,7 +290,7 @@ function TambahProduct(props) {
                     </p>
                   ))}
 
-                <div className="input-type-file mt-3">
+                <div className="input-type-file mt-4">
                   <input
                     type="file"
                     name="image"
@@ -306,7 +306,7 @@ function TambahProduct(props) {
                   </label>
                 </div>
 
-                <div className="button-form-add-produk">
+                <div className="button-form-add-produk mt-2">
                   <motion.button
                     whileTap={{
                       scale: 0.9,

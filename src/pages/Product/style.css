@@ -228,6 +228,10 @@
   .product-main-right-quatity-low {
     overflow-x: scroll;
   }
+
+  .table-data-product-header {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 280px) {

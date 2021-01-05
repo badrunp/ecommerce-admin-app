@@ -458,6 +458,7 @@
   .category-table-data-remove {
     flex-direction: column;
   }
+  .product-notfound h2,
   .category-notfound h2 {
     font-size: 20px;
   }
