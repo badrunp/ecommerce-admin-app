@@ -89,9 +89,16 @@ export const handleShowChat = () => {
   };
 };
 
-export const outputChat = () => {
+export const outputChat = (msg) => {
   return async (dispatch) => {
-    dispatch(getChat());
+    if (msg !== false) {
+      dispatch({
+        type: chatConstant.OUTPUTMESSAGE,
+        payload: {
+          msg: msg,
+        },
+      });
+    }
   };
 };
 

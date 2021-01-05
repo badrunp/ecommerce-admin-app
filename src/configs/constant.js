@@ -57,6 +57,7 @@ export const categoryConstant = {
 export const chatConstant = {
   GETALLCHAT: "GETALLCHAT",
   OUTPUTCHAT: "OUTPUTCHAT",
+  OUTPUTMESSAGE: "OUTPUTMESSAGE",
 };
 
 export const productConstant = {
