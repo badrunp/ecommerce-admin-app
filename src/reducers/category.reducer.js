@@ -11,6 +11,7 @@ const initialState = {
   per_page: null,
   current_page: null,
   updateGrapich: false,
+  loadingSearch: false,
   // category_pagination: 1
 };
 
@@ -62,10 +63,19 @@ const buildNewCategory = (parentId, categories, category) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case categoryConstant.GETALLCATEGORY_REQUEST:
+      state = {
+        ...state,
+        loadingSearch: action.payload.bool,
+        loading: true,
+      };
+      break;
     case categoryConstant.GETALLCATEGORY:
       const cHistory = action.payload.categoryHistory.reverse();
       state = {
         ...state,
+        loadingSearch: false,
+        loading: false,
         categories: action.payload.categories,
         categoryLength: action.payload.categoryLength,
         categoryData: action.payload.categoryData,

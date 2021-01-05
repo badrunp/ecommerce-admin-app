@@ -1,8 +1,12 @@
 import { categoryConstant } from "../configs/constant";
 import axiosApi from "../helpers/axios";
 
-const getAllCategory = (page, search) => {
+const getAllCategory = (page, search, bool = false) => {
   return async (dispatch) => {
+    dispatch({
+      type: categoryConstant.GETALLCATEGORY_REQUEST,
+      payload: { bool: bool },
+    });
     try {
       const res = await axiosApi.post(
         `/category/getcategory?page=${page || 1}`,

@@ -540,12 +540,12 @@ function Category() {
     const cari = {
       search: search,
     };
-    dispatch(getAllCategory(1, cari));
+    dispatch(getAllCategory(1, cari, true));
   };
 
   return (
     <Layout>
-      {category.loading ? (
+      {category.loading && !category.loadingSearch ? (
         <div className="loading-2">
           <ImSpinner9 className="loading-2-icon" />
         </div>
@@ -863,7 +863,15 @@ function Category() {
                   Hapus semua kategori
                 </motion.button>
               }
-              <div>
+              <div className="d-flex" style={{ position: "relative" }}>
+                {category.loadingSearch ? (
+                  <div
+                    className=""
+                    style={{ position: "absolute", left: "-35px", top: "8px" }}
+                  >
+                    <ImSpinner9 className="loading" />
+                  </div>
+                ) : null}
                 <Input
                   type="text"
                   value={search}
