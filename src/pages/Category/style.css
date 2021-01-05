@@ -390,15 +390,17 @@
   box-shadow: none !important;
 }
 
+.product-notfound,
 .category-notfound {
   width: 100%;
   height: max-content;
-  padding: 50px 0;
+  padding: 60.5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.product-notfound-icon,
 .category-notfound-icon {
   font-size: 50px;
   display: block;

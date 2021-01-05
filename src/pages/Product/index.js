@@ -693,39 +693,24 @@ function Product(props) {
           >
             <div className="table-data-product-header">
               <h3>Produk Detail</h3>
-
-              <div style={{ position: "relative" }}>
-                {products.loadingSearch ? (
-                  <div
-                    className=""
-                    style={{
-                      position: "absolute",
-                      left: "-15%",
-                      top: "35%",
-                      transform: "translate(0,-50%)",
-                    }}
-                  >
-                    <ImSpinner9 className="loading" />
-                  </div>
-                ) : null}
-                <Input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  onKeyUp={handleCangeSearch}
-                  placeholder="Cari Nama Product....."
-                  className={
-                    darkMode
-                      ? "input-all-dark-mode input-search-product"
-                      : "input-all input-search-product"
-                  }
-                  iconleft={<BsSearch className="iconLeft" />}
-                  style={{ paddingLeft: "40px" }}
-                />
-              </div>
+              <Input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyUp={handleCangeSearch}
+                placeholder="Cari Nama Product....."
+                className={
+                  darkMode
+                    ? "input-all-dark-mode input-search-product"
+                    : "input-all input-search-product"
+                }
+                iconleft={<BsSearch className="iconLeft" />}
+                style={{ paddingLeft: "40px" }}
+              />
             </div>
 
-            {category.categoryData.length > 0 ? (
+            {products.loadingSearch ? null : category.categoryData.length >
+              0 ? (
               <div className="category-pagination-main mt-3">
                 {pages.map((number) => (
                   // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>
@@ -741,7 +726,17 @@ function Product(props) {
               </div>
             ) : null}
 
-            {products.productsS && products.productsS.length > 0 ? (
+            {products.loadingSearch ? (
+              <div
+                className="d-flex justify-content-center align-items-center"
+                style={{ height: "171px" }}
+              >
+                <div>
+                  <ImSpinner9 className="loading loading-md mr-2" />
+                  Mencari.....
+                </div>
+              </div>
+            ) : products.productsS && products.productsS.length > 0 ? (
               <Table striped bordered responsive="lg" className="table-data">
                 <thead>
                   <tr className={darkMode ? "text-color-dark-mode" : ""}>
@@ -818,8 +813,8 @@ function Product(props) {
                 </tbody>
               </Table>
             ) : (
-              <div className="category-notfound">
-                <RiFileWarningFill className="category-notfound-icon" />
+              <div className="product-notfound">
+                <RiFileWarningFill className="product-notfound-icon" />
                 <h2>Tidak Ditemukan!</h2>
               </div>
             )}

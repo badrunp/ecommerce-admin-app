@@ -28,6 +28,10 @@ li {
   margin: auto;
 }
 
+.loading-md {
+  font-size: 3rem;
+}
+
 .loading-2 {
   position: fixed;
   top: 0;

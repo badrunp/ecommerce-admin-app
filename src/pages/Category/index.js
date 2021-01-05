@@ -864,19 +864,6 @@ function Category() {
                 </motion.button>
               }
               <div className="d-flex" style={{ position: "relative" }}>
-                {category.loadingSearch ? (
-                  <div
-                    className=""
-                    style={{
-                      position: "absolute",
-                      left: "-15%",
-                      top: "35%",
-                      transform: "translate(0,-50%)",
-                    }}
-                  >
-                    <ImSpinner9 className="loading" />
-                  </div>
-                ) : null}
                 <Input
                   type="text"
                   value={search}
@@ -908,7 +895,18 @@ function Category() {
                 ))}
               </div>
             ) : null}
-            {category.categoryData.length > 0 ? (
+
+            {category.loadingSearch ? (
+              <div
+                className="d-flex justify-content-center align-items-center"
+                style={{ height: "171px" }}
+              >
+                <div>
+                  <ImSpinner9 className="loading loading-md mr-2" />
+                  Mencari.....
+                </div>
+              </div>
+            ) : category.categoryData.length > 0 ? (
               <Table
                 striped
                 bordered
