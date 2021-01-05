@@ -1,8 +1,12 @@
 import { productConstant } from "../configs/constant";
 import axiosApi from "../helpers/axios";
 
-const getAllProduct = (query = 1, search) => {
+const getAllProduct = (query = 1, search, bool = false) => {
   return async (dispatch) => {
+    dispatch({
+      type: productConstant.GETALLPRODUCT_REQUEST,
+      payload: { bool },
+    });
     try {
       const res = await axiosApi.post(
         `/product/getallproduct?page=${query}`,

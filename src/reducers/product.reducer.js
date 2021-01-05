@@ -12,14 +12,22 @@ const initialState = {
   loading: false,
   updateGrapich: false,
   productHistory: [],
+  loadingSearch: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case productConstant.GETALLPRODUCT_REQUEST:
+      state = {
+        ...state,
+        loadingSearch: action.payload.bool,
+      };
+      break;
     case productConstant.GETALLPRODUCT_SUCCESS:
       const productHistoryReverse = action.payload.productHistory.reverse();
       state = {
         ...state,
+        loadingSearch: false,
         products: action.payload.products,
         productsS: action.payload.productsS,
         totalData: action.payload.totalData,

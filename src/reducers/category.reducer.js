@@ -67,7 +67,6 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: action.payload.bool,
-        loading: true,
       };
       break;
     case categoryConstant.GETALLCATEGORY:
@@ -75,7 +74,6 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: false,
-        loading: false,
         categories: action.payload.categories,
         categoryLength: action.payload.categoryLength,
         categoryData: action.payload.categoryData,

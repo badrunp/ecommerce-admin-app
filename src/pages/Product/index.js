@@ -400,7 +400,7 @@ function Product(props) {
       search: search,
     };
 
-    dispatch(getAllProduct(1, searchi));
+    dispatch(getAllProduct(1, searchi, true));
   };
 
   const renderModalProductImage = () => {
@@ -467,7 +467,7 @@ function Product(props) {
 
   return (
     <Layout>
-      {products.loading ? (
+      {products.loading && !products.loadingSearch ? (
         <div className="loading-2">
           <ImSpinner9 className="loading-2-icon" />
         </div>
@@ -694,20 +694,30 @@ function Product(props) {
             <div className="table-data-product-header">
               <h3>Produk Detail</h3>
 
-              <Input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onKeyUp={handleCangeSearch}
-                placeholder="Cari Nama Product....."
-                className={
-                  darkMode
-                    ? "input-all-dark-mode input-search-product"
-                    : "input-all input-search-product"
-                }
-                iconleft={<BsSearch className="iconLeft" />}
-                style={{ paddingLeft: "40px" }}
-              />
+              <div style={{ position: "relative" }}>
+                {products.loadingSearch ? (
+                  <div
+                    className=""
+                    style={{ position: "absolute", left: "-35px", top: "8px" }}
+                  >
+                    <ImSpinner9 className="loading" />
+                  </div>
+                ) : null}
+                <Input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyUp={handleCangeSearch}
+                  placeholder="Cari Nama Product....."
+                  className={
+                    darkMode
+                      ? "input-all-dark-mode input-search-product"
+                      : "input-all input-search-product"
+                  }
+                  iconleft={<BsSearch className="iconLeft" />}
+                  style={{ paddingLeft: "40px" }}
+                />
+              </div>
             </div>
 
             {category.categoryData.length > 0 ? (
