@@ -47,7 +47,7 @@ class Chat extends React.Component {
           outputMsg: msg,
         });
       }
-      //   this.props.dispatch(outputChat(this.state.outputMsg));
+      this.props.dispatch(getChat());
     });
   }
 
