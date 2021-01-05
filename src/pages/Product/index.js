@@ -34,6 +34,7 @@ import { VscWarning } from "react-icons/vsc";
 import { BiImageAdd } from "react-icons/bi";
 import { ImImages } from "react-icons/im";
 import { baseUrlImage } from "../../configs/urlConfigs";
+import { CountUp } from "use-count-up";
 
 function Product(props) {
   const products = useSelector((state) => state.products);
@@ -532,7 +533,11 @@ function Product(props) {
                     }
                   >
                     <h1 className={darkMode ? "text-color-dark-mode" : ""}>
-                      {products.productsLength}
+                      <CountUp
+                        isCounting
+                        end={products.productsLength && products.productsLength}
+                        duration={3.3}
+                      />
                     </h1>
                   </div>
                   <h4 className={darkMode ? "text-color-dark-mode" : ""}>

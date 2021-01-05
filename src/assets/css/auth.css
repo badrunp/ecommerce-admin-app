@@ -27,7 +27,7 @@
 }
 
 .input-group > input:focus {
-  border: 2px solid #0f66bd;
+  border: 1.5px solid #0f66bd;
   box-shadow: 0 0 1.3px 1.3px #0f66bd;
 }
 
@@ -124,4 +124,8 @@
 
 .is-valid-input:focus {
   box-shadow: 0 0 1.3px 1.3px #28a745 !important;
+}
+
+.invalid-feedback {
+  margin-top: -10px !important;
 }

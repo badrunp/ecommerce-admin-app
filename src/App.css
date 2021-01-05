@@ -23,7 +23,7 @@ li {
 }
 
 .loading {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   animation: animate 1.5s linear infinite;
   margin: auto;
 }
@@ -109,7 +109,7 @@ p.render-image-name {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #0f66bd;
+  background: transparent;
   border-radius: 10px;
 }
 
