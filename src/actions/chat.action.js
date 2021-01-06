@@ -9,7 +9,7 @@ const getChat = (id) => {
       //     uid: id
       // }
       const res = await axiosApi.post("/chat/getchat");
-
+      console.log(res);
       if (res.status == 200) {
         dispatch({
           type: chatConstant.GETALLCHAT,

@@ -208,7 +208,6 @@ class Chat extends React.Component {
                     placeholder="Ketikan Pesan"
                     value={this.state.message}
                     onChange={this.handleCangeInput}
-                    autoFocus
                   />
                   <button className="btn-message" type="submit">
                     <IoMdSend className="icon-send-message" />
