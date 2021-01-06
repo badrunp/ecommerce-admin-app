@@ -11,6 +11,16 @@
   width: 100%;
 }
 
+@media (max-width: 720px) {
+  .register {
+    height: max-content !important;
+    overflow-y: scroll !important;
+  }
+  .register-wrapper {
+    margin: 130px 0;
+  }
+}
+
 .register-box {
   max-width: 420px;
   width: 100%;
