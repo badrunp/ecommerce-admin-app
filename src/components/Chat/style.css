@@ -245,6 +245,24 @@
   letter-spacing: 0.5px;
 }
 
+@media (max-width: 720px) {
+  .chat-message {
+    font-size: 11px;
+  }
+  .chat-message-right {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 450px) {
+  .user-message {
+    width: 150px;
+  }
+  .user-message-right {
+    width: 150px;
+  }
+}
+
 /**/
 
 .input-chating {
