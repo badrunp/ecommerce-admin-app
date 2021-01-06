@@ -38,9 +38,26 @@ export default (state = initialState, action) => {
       };
       break;
     case chatConstant.OUTPUTMESSAGE:
+      const msg = action.payload.msg[0]
+        ? action.payload.msg[0]
+        : action.payload.msg;
+      // const msg2 = msg[0];
+      // console.log(msg);
+      // console.log(state.chats[state.chats.length - 1]);
+      let updateChats;
+      const oldChats = state.chats[state.chats.length - 1];
+      if (msg) {
+        if (oldChats.message === msg.message) {
+          updateChats = state.chats.pop();
+          updateChats = state.chats.concat(msg);
+        } else {
+          updateChats = state.chats.concat(msg);
+        }
+      }
+
       state = {
         ...state,
-        chats: state.chats.concat(action.payload.msg),
+        chats: updateChats,
       };
       break;
     // case chatConstant.OUTPUTCHAT:

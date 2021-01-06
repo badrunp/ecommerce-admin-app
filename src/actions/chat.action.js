@@ -9,7 +9,6 @@ const getChat = (id) => {
       //     uid: id
       // }
       const res = await axiosApi.post("/chat/getchat");
-      console.log(res);
       if (res.status == 200) {
         dispatch({
           type: chatConstant.GETALLCHAT,
@@ -92,7 +91,25 @@ export const handleShowChat = () => {
 
 export const outputChat = (msg) => {
   return async (dispatch) => {
-    if (msg !== false) {
+    const { chats } = store.getState().chats;
+    // const chatOld = chats[chats.length - 1];
+
+    // let updateChats;
+    // let updateChats2;
+    // if (msg.userId) {
+    //   if (msg.userId._id !== chatOld.userId._id) {
+    //     updateChats = msg;
+    //   } else {
+    //     updateChats2 = msg;
+    //   }
+    // }
+
+    // if (updateChats !== undefined && updateChats2 !== undefined) {
+    //   console.log(updateChats);
+    //   console.log(updateChats2);
+    // }
+
+    if (msg !== false && msg !== undefined) {
       dispatch({
         type: chatConstant.OUTPUTMESSAGE,
         payload: {

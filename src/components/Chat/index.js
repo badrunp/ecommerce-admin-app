@@ -25,10 +25,6 @@ class Chat extends React.Component {
   componentDidMount() {
     let server = baseUrl;
 
-    this.props.dispatch(getChat());
-
-    this.props.dispatch(getNotificationChats(this.props.auth.user._id));
-
     this.socket = io(server);
 
     if (this.state.message.length === 0) {
@@ -48,20 +44,18 @@ class Chat extends React.Component {
           outputMsg: msg,
         });
       }
-      this.props.dispatch(getChat());
+      this.props.dispatch(outputChat(this.state.outputMsg));
     });
   }
 
   componentWillUnmount() {
     this.state.outputMsg = false;
     this.state.message = false;
-    getChat();
   }
 
   componentDidUpdate() {
     // this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
     this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
-    getChat();
   }
 
   handleCangeInput = (e) => {
