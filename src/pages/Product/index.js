@@ -707,7 +707,7 @@ function Product(props) {
             }
           >
             <div className="table-data-product-header">
-              <h3>Produk Detail</h3>
+              <h3 className="grapich-title">Produk Detail</h3>
               <Input
                 type="text"
                 value={search}
@@ -843,7 +843,7 @@ function Product(props) {
               : "product-content-history"
           }
         >
-          <h3>History</h3>
+          <h3 className="grapich-title">History</h3>
           <Table
             striped
             bordered

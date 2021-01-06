@@ -602,7 +602,7 @@ function Category() {
               }
             >
               <div className="category-content-left-header">
-                <h3 className="category-content-left-title">
+                <h3 className="category-content-left-title grapich-title">
                   Struktur kategori
                 </h3>
                 <div className="d-flex">
@@ -769,7 +769,13 @@ function Category() {
                     />
                   </h2>
                 </div>
-                <h4 className={darkMode ? "text-color-dark-mode" : ""}>
+                <h4
+                  className={
+                    darkMode
+                      ? "text-color-dark-mode grapich-title"
+                      : "grapich-title"
+                  }
+                >
                   Jumlah Kategori
                 </h4>
               </div>
@@ -811,7 +817,7 @@ function Category() {
                     : "category-content-right-top"
                 }
               >
-                <h3>Kategori Terbanyak</h3>
+                <h3 className="grapich-title">Kategori Terbanyak</h3>
 
                 <ComposedChart
                   width={600}
@@ -854,7 +860,7 @@ function Category() {
             }
           >
             <div className="category-table-data-remove">
-              <h2>Detail Kategori</h2>
+              <h2 className="grapich-title">Detail Kategori</h2>
               {
                 <motion.button
                   whileTap={{
@@ -981,7 +987,7 @@ function Category() {
               : "category-content-left-history"
           }
         >
-          <h3>History</h3>
+          <h3 className="grapich-title">History</h3>
           <Table
             striped
             bordered
