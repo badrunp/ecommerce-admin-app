@@ -567,7 +567,10 @@ function Product(props) {
                       : "product-main-left-grapich"
                   }
                 >
-                  <h4 style={{ marginBottom: "15px" }}>
+                  <h4
+                    className="grapich-title"
+                    style={{ marginBottom: "15px" }}
+                  >
                     Harga Produk Termahal
                   </h4>
                   <LineChart
@@ -606,7 +609,10 @@ function Product(props) {
               >
                 {productsTotalMax(products.products).length > 0 ? (
                   <>
-                    <h4 style={{ marginBottom: "15px" }}>
+                    <h4
+                      className="grapich-title"
+                      style={{ marginBottom: "15px" }}
+                    >
                       Jumlah Produk Terbanyak
                     </h4>
                     <BarChart
@@ -653,7 +659,12 @@ function Product(props) {
                       : "product-main-right-quatity-low"
                   }
                 >
-                  <h4 style={{ marginBottom: "15px" }}>Produk Hampir Habis</h4>
+                  <h4
+                    className="grapich-title"
+                    style={{ marginBottom: "15px" }}
+                  >
+                    Produk Hampir Habis
+                  </h4>
                   <BarChart
                     className="grapich"
                     width={500}

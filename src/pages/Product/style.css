@@ -221,6 +221,9 @@
   .grapich {
     margin-left: 140px;
   }
+  .grapich-title {
+    font-size: 20px;
+  }
   .product-main-right-quatity-max {
     overflow-x: scroll;
   }
