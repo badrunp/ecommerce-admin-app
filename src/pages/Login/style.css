@@ -15,7 +15,7 @@
 @media (max-width: 720px) {
   .login,
   .register {
-    height: max-content;
+    height: max-content !important;
     overflow-y: scroll !important;
   }
   .register-wrapper,
