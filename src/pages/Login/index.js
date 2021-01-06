@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Alert, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { login, timeOutLogin } from "../../actions";
+import { login, timeOutLogin, timeOutRegister } from "../../actions";
 import { LoginPage } from "../../assets";
 import "./style.css";
 import { ImSpinner9 } from "react-icons/im";
-import { VscKey } from "react-icons/vsc";
+import { FaCheck } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
+import { BsCheckAll } from "react-icons/bs";
 
 function Login() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,6 +32,12 @@ function Login() {
     }
   };
 
+  useEffect(() => {
+    if (user.message) {
+      setTimeout(() => dispatch(timeOutRegister()), 4000);
+    }
+  }, []);
+
   if (auth.authenticate) {
     return <Redirect to="/" />;
   }
@@ -37,6 +45,16 @@ function Login() {
   return (
     <>
       <div className="login">
+        {user.message ? (
+          <div className="message-validasi-success message-validasi">
+            <div>
+              <p className="message-validasi-text">
+                <BsCheckAll className="message-validasi-icon" /> {user.message}
+              </p>
+            </div>
+          </div>
+        ) : null}
+
         <div className="container-fluid login-wrapper">
           <Row className="auth-row">
             <Col md="6">

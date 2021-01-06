@@ -6,11 +6,10 @@ import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { register, timeOutRegister } from "../../actions";
 import { ImSpinner9 } from "react-icons/im";
-import { FaCheck, FaRegUser } from "react-icons/fa";
-import { VscKey } from "react-icons/vsc";
 import { HiOutlineMail } from "react-icons/hi";
+import { FaRegUser } from "react-icons/fa";
 
-function Register() {
+function Register(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
@@ -32,11 +31,15 @@ function Register() {
     if (!user.loading) {
       dispatch(register(userForm));
     }
+
+    setNama("");
+    setEmail("");
+    setPassword("");
   };
 
   useEffect(() => {
     if (user.message) {
-      setTimeout(() => dispatch(timeOutRegister()), 4000);
+      props.history.push("/masuk");
     }
   }, [user]);
 
@@ -47,12 +50,6 @@ function Register() {
   return (
     <>
       <div className="register">
-        {user.message ? (
-          <Alert variant="success" className="success-validasi">
-            <FaCheck /> {user.message}
-          </Alert>
-        ) : null}
-
         <div className="container-fluid register-wrapper">
           <Row className="auth-row">
             <Col md="6">
