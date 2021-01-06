@@ -8,6 +8,7 @@ import {
   handleShowChat,
   outputChat,
   removeNotificationChats,
+  addNotificationChats,
 } from "../../actions";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -37,9 +38,9 @@ class Chat extends React.Component {
     }
 
     this.socket.on("outputMessage", (msg) => {
-      // // if(msg[0].userId._id != this.props.auth.user._id){
-      // //     this.props.dispatch(addNotificationChats(this.props.auth.user._id))
-      // // }
+      if (msg[0].userId._id != this.props.auth.user._id) {
+        this.props.dispatch(addNotificationChats(this.props.auth.user._id));
+      }
       // console.log(msg);
       // console.log(this.props.auth.user._id);
       if (this.state.message === "") {
@@ -54,11 +55,13 @@ class Chat extends React.Component {
   componentWillUnmount() {
     this.state.outputMsg = false;
     this.state.message = false;
+    getChat();
   }
 
   componentDidUpdate() {
     // this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
     this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+    getChat();
   }
 
   handleCangeInput = (e) => {
@@ -233,7 +236,9 @@ class Chat extends React.Component {
           }
           onClick={this.handleShowChat}
         >
-          {this.props.chats.is_message && this.props.chats.chats.length > 0 ? (
+          {this.props.chats.is_message &&
+          this.props.chats.chats.length > 0 &&
+          !this.props.chats.showChat ? (
             <div
               className={
                 this.props.chats.showChat

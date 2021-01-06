@@ -67,6 +67,7 @@ export const addNotificationChats = (id) => {
     };
     try {
       const res = await axiosApi.post("/chat/addnotificationchats", uid);
+      console.log(res);
       if (res.status == 200) {
         dispatch({
           type: "ADDNOTIFICATIONMESSAGE",
