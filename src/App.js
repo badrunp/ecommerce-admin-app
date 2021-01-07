@@ -50,6 +50,8 @@ function App() {
     let server = baseUrl;
     let socket = io(server);
 
+    console.log(server);
+
     socket.emit("joinRoom", {
       name: auth.user.fullName,
       room: "global",
