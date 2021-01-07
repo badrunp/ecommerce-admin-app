@@ -126,7 +126,18 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  overflow: hidden;
+  position: relative;
+}
+
+.icon-user-online {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #28a745;
+  position: absolute;
+  z-index: 10;
+  right: -2px;
+  top: -2px;
 }
 
 .chating-user-left {
@@ -167,6 +178,11 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
+  box-shadow: 0.7px 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.user-message.active {
+  box-shadow: 0.7px 1px 1px 1px rgba(0, 0, 0, 0.9);
 }
 
 .time-chating {

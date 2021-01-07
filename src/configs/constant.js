@@ -58,6 +58,7 @@ export const chatConstant = {
   GETALLCHAT: "GETALLCHAT",
   OUTPUTCHAT: "OUTPUTCHAT",
   OUTPUTMESSAGE: "OUTPUTMESSAGE",
+  GETUSERONLINE: "GETUSERONLINE",
 };
 
 export const productConstant = {

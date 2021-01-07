@@ -32,7 +32,6 @@ class Chat extends React.Component {
         outputMsg: "",
       });
     }
-
     this.socket.on("outputMessage", (msg) => {
       if (msg[0].userId._id != this.props.auth.user._id) {
         this.props.dispatch(addNotificationChats(this.props.auth.user._id));
@@ -76,6 +75,12 @@ class Chat extends React.Component {
     const time = moment().format("HH:mm");
 
     // const userM = this.props.auth.map((item) => item._id === userId);
+
+    const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
+
+    if (oldChat.message === chat && oldChat.userId._id === userId) {
+      return;
+    }
 
     const msgObj = {
       message: chat,
@@ -157,6 +162,11 @@ class Chat extends React.Component {
                           </div>
                         </div>
                         <div className="user-chating-image">
+                          {this.props.chats.userOnline.map((item) => {
+                            if (item.userId === chat.userId._id) {
+                              return <div className="icon-user-online"></div>;
+                            }
+                          })}
                           <img src={baseUrlImage(chat.userId.image)} alt="" />
                         </div>
                       </div>
@@ -165,13 +175,24 @@ class Chat extends React.Component {
                     return (
                       <div className="chating-user-left" key={i}>
                         <div className="user-chating-image">
+                          {this.props.chats.userOnline.map((item) => {
+                            if (item.userId === chat.userId._id) {
+                              return <div className="icon-user-online"></div>;
+                            }
+                          })}
                           <img src={baseUrlImage(chat.userId.image)} alt="" />
                         </div>
                         <div className="box-chat-message">
                           <p className="chat-user-name">
                             {chat.userId.fullName}
                           </p>
-                          <div className="user-message">
+                          <div
+                            className={
+                              this.props.darkMode
+                                ? "user-message active"
+                                : "user-message"
+                            }
+                          >
                             <p className="chat-message">{chat.message}</p>
                             <p
                               className={

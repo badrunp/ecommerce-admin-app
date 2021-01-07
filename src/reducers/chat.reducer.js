@@ -6,6 +6,7 @@ const initialState = {
   closeChating: false,
   is_message: false,
   userId: null,
+  userOnline: [],
 };
 
 export default (state = initialState, action) => {
@@ -47,7 +48,10 @@ export default (state = initialState, action) => {
       let updateChats;
       const oldChats = state.chats[state.chats.length - 1];
       if (msg) {
-        if (oldChats.message === msg.message) {
+        if (
+          oldChats.message === msg.message &&
+          oldChats.userId._id === msg.userId._id
+        ) {
           updateChats = state.chats.pop();
           updateChats = state.chats.concat(msg);
         } else {
@@ -66,6 +70,11 @@ export default (state = initialState, action) => {
     //         chats: state.chats.concat(action.payload.chats)
     //     }
     //     break;
+    case chatConstant.GETUSERONLINE:
+      state = {
+        ...state,
+        userOnline: action.payload.data,
+      };
   }
 
   return state;

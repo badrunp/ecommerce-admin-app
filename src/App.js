@@ -8,10 +8,13 @@ import {
   getAllProduct,
   getChat,
   getNotificationChats,
+  getUserOnline,
   userIsLogin,
 } from "./actions";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import { checkDarkMode } from "./actions/darkmode.action";
+import io from "socket.io-client";
+import { baseUrl } from "./configs/urlConfigs";
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -41,7 +44,22 @@ function App() {
 
   useEffect(() => {
     dispatch(getChat());
-  });
+  }, []);
+
+  useEffect(() => {
+    let server = baseUrl;
+    let socket = io(server);
+
+    socket.emit("joinRoom", {
+      name: auth.user.fullName,
+      room: "global",
+      userId: auth.user._id,
+    });
+
+    socket.on("usersList", ({ users }) => {
+      dispatch(getUserOnline(users));
+    });
+  }, [auth]);
 
   return (
     <>
