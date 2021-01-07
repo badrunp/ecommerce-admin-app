@@ -181,7 +181,7 @@
 .user-image {
   width: 45px;
   height: 45px;
-  overflow: hidden;
+  position: relative;
   border-radius: 50%;
   cursor: pointer;
 }

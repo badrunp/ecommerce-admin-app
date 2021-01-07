@@ -119,6 +119,11 @@ class Chat extends React.Component {
                 <IoMdChatboxes /> Live Chat
               </h1>
 
+              <p className="user-online-info">
+                <div className="icon-user-online-info"></div> online:{" "}
+                {this.props.chats.userOnline.length}
+              </p>
+
               <RiCloseLine
                 onClick={this.handleShowChat}
                 className="chating-icon-close"

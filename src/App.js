@@ -50,8 +50,6 @@ function App() {
     let server = baseUrl;
     let socket = io(server);
 
-    console.log(server);
-
     socket.emit("joinRoom", {
       name: auth.user.fullName,
       room: "global",
@@ -59,7 +57,6 @@ function App() {
     });
 
     socket.on("usersList", ({ users }) => {
-      console.log(users);
       dispatch(getUserOnline(users));
     });
   }, [auth]);
