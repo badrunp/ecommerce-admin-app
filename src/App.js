@@ -57,6 +57,7 @@ function App() {
     });
 
     socket.on("usersList", ({ users }) => {
+      console.log(users);
       dispatch(getUserOnline(users));
     });
   }, [auth]);

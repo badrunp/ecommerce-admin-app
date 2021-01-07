@@ -26,7 +26,7 @@ const getAllProduct = (query = 1, search, bool = false) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 };

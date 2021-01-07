@@ -162,9 +162,11 @@ class Chat extends React.Component {
                           </div>
                         </div>
                         <div className="user-chating-image">
-                          {this.props.chats.userOnline.map((item) => {
+                          {this.props.chats.userOnline.map((item, i) => {
                             if (item.userId === chat.userId._id) {
-                              return <div className="icon-user-online"></div>;
+                              return (
+                                <div className="icon-user-online" key={i}></div>
+                              );
                             }
                           })}
                           <img src={baseUrlImage(chat.userId.image)} alt="" />
