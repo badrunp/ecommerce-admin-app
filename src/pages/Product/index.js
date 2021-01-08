@@ -518,6 +518,146 @@ function Product(props) {
           </div>
         </div>
 
+        {products.products.length > 0 ? (
+          <div
+            className={
+              darkMode
+                ? "table-data-product bg-content-dark-mode"
+                : "table-data-product"
+            }
+          >
+            <div className="table-data-product-header">
+              <h3 className="grapich-title">Produk Detail</h3>
+              <Input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyUp={handleCangeSearch}
+                placeholder="Cari Nama Product....."
+                className={
+                  darkMode
+                    ? "input-all-dark-mode input-search-product"
+                    : "input-all input-search-product"
+                }
+                iconleft={<BsSearch className="iconLeft" />}
+                style={{ paddingLeft: "40px" }}
+              />
+            </div>
+
+            {products.loadingSearch ? null : category.categoryData.length >
+              0 ? (
+              <div className="category-pagination-main mt-3">
+                {pages.map((number) => (
+                  // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>
+                  <Pagination.Item
+                    onClick={(e) => handlePagination(e, number)}
+                    key={number}
+                    active={number === activePage}
+                    className="category-pagination"
+                  >
+                    {number + 1}
+                  </Pagination.Item>
+                ))}
+              </div>
+            ) : null}
+
+            {products.loadingSearch ? (
+              <div
+                className="d-flex justify-content-center align-items-center"
+                style={{ height: "171px" }}
+              >
+                <div>
+                  <ImSpinner9 className="loading loading-md mr-2" />
+                  Mencari.....
+                </div>
+              </div>
+            ) : products.productsS && products.productsS.length > 0 ? (
+              <Table striped bordered responsive="lg" className="table-data">
+                <thead>
+                  <tr className={darkMode ? "text-color-dark-mode" : ""}>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Slug</th>
+                    <th>Gambar</th>
+                    <th>Jumlah</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                    <th>Category</th>
+                    <th colSpan="2">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.productsS &&
+                    products.productsS.map((item, i) => (
+                      <tr
+                        key={item._id}
+                        className={darkMode ? "link-color-dark-mode" : ""}
+                      >
+                        <td>{i + 1 + 10 * (products.currentPage - 1)}</td>
+                        <td>{item.name}</td>
+                        <td>{item.slug}</td>
+                        <td>
+                          <ImImages
+                            className="table-data-icon icon-table-image"
+                            onClick={(e) =>
+                              handleModalProductImage(e, item._id)
+                            }
+                          />
+                        </td>
+                        <td>{item.quantity}</td>
+                        <td>Rp.{item.price}</td>
+                        <td>
+                          <BsPencil
+                            className="table-data-icon icon-table-description"
+                            onClick={(e) =>
+                              handleModalProductDescription(e, item._id)
+                            }
+                          />
+                        </td>
+                        <td>
+                          {item.category
+                            ? item.category.name
+                            : "Tidak Ada Kategori"}
+                        </td>
+                        <td className="td-action">
+                          <button
+                            onClick={(e) => handleUpdateProduct(e, item._id)}
+                            className={
+                              darkMode
+                                ? "btn btn-sm container-layout-update btn-hover bg-update-dark-mode"
+                                : "btn btn-sm container-layout-update btn-hover"
+                            }
+                          >
+                            <MdUpdate /> Ubah
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            onClick={(e) =>
+                              handleDeleteProduct(e, item._id, item.name)
+                            }
+                            className={
+                              darkMode
+                                ? "btn btn-sm container-layout-delete btn-hover bg-delete-dark-mode"
+                                : "btn btn-sm container-layout-delete btn-hover"
+                            }
+                          >
+                            <RiDeleteBin6Fill /> Hapus
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            ) : (
+              <div className="product-notfound">
+                <RiFileWarningFill className="product-notfound-icon" />
+                <h2>Tidak Ditemukan!</h2>
+              </div>
+            )}
+          </div>
+        ) : null}
+
         <div className="product-main">
           <div className="product-main-wrapper ">
             <div className="product-main-left">
@@ -697,144 +837,6 @@ function Product(props) {
             </div>
           </div>
         </div>
-
-        {products.products.length > 0 ? (
-          <div
-            className={
-              darkMode
-                ? "table-data-product bg-content-dark-mode"
-                : "table-data-product"
-            }
-          >
-            <div className="table-data-product-header">
-              <h3 className="grapich-title">Produk Detail</h3>
-              <Input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                onKeyUp={handleCangeSearch}
-                placeholder="Cari Nama Product....."
-                className={
-                  darkMode
-                    ? "input-all-dark-mode input-search-product"
-                    : "input-all input-search-product"
-                }
-                iconleft={<BsSearch className="iconLeft" />}
-                style={{ paddingLeft: "40px" }}
-              />
-            </div>
-
-            {products.loadingSearch ? null : category.categoryData.length >
-              0 ? (
-              <div className="category-pagination-main mt-3">
-                {pages.map((number) => (
-                  // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>
-                  <Pagination.Item
-                    onClick={(e) => handlePagination(e, number)}
-                    key={number}
-                    active={number === activePage}
-                    className="category-pagination"
-                  >
-                    {number + 1}
-                  </Pagination.Item>
-                ))}
-              </div>
-            ) : null}
-
-            {products.loadingSearch ? (
-              <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ height: "171px" }}
-              >
-                <div>
-                  <ImSpinner9 className="loading loading-md mr-2" />
-                  Mencari.....
-                </div>
-              </div>
-            ) : products.productsS && products.productsS.length > 0 ? (
-              <Table striped bordered responsive="lg" className="table-data">
-                <thead>
-                  <tr className={darkMode ? "text-color-dark-mode" : ""}>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Slug</th>
-                    <th>Gambar</th>
-                    <th>Jumlah</th>
-                    <th>Harga</th>
-                    <th>Deskripsi</th>
-                    <th>Category</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.productsS &&
-                    products.productsS.map((item, i) => (
-                      <tr
-                        key={item._id}
-                        className={darkMode ? "link-color-dark-mode" : ""}
-                      >
-                        <td>{i + 1 + 10 * (products.currentPage - 1)}</td>
-                        <td>{item.name}</td>
-                        <td>{item.slug}</td>
-                        <td>
-                          <ImImages
-                            className="table-data-icon icon-table-image"
-                            onClick={(e) =>
-                              handleModalProductImage(e, item._id)
-                            }
-                          />
-                        </td>
-                        <td>{item.quantity}</td>
-                        <td>Rp.{item.price}</td>
-                        <td>
-                          <BsPencil
-                            className="table-data-icon icon-table-description"
-                            onClick={(e) =>
-                              handleModalProductDescription(e, item._id)
-                            }
-                          />
-                        </td>
-                        <td>
-                          {item.category
-                            ? item.category.name
-                            : "Tidak Ada Kategori"}
-                        </td>
-                        <td className="td-action">
-                          <button
-                            onClick={(e) => handleUpdateProduct(e, item._id)}
-                            className={
-                              darkMode
-                                ? "btn btn-sm container-layout-update btn-hover bg-update-dark-mode"
-                                : "btn btn-sm container-layout-update btn-hover"
-                            }
-                          >
-                            <MdUpdate /> Ubah
-                          </button>
-                          <button
-                            onClick={(e) =>
-                              handleDeleteProduct(e, item._id, item.name)
-                            }
-                            className={
-                              darkMode
-                                ? "btn btn-sm container-layout-delete btn-hover bg-delete-dark-mode"
-                                : "btn btn-sm container-layout-delete btn-hover"
-                            }
-                          >
-                            <RiDeleteBin6Fill /> Hapus
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-            ) : (
-              <div className="product-notfound">
-                <RiFileWarningFill className="product-notfound-icon" />
-                <h2>Tidak Ditemukan!</h2>
-              </div>
-            )}
-          </div>
-        ) : null}
 
         <div
           className={

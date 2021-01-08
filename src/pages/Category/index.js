@@ -101,7 +101,7 @@ function Category() {
     if (category.updateGrapich) {
       setTimeout(() => {
         dispatch(updateGrapich());
-      });
+      }, 100);
     }
   }, [category]);
 
@@ -592,6 +592,124 @@ function Category() {
           </div>
         </div>
 
+        {category.categories.length > 0 ? (
+          <div
+            className={
+              darkMode
+                ? "category-table-data mt-4 bg-content-dark-mode"
+                : "category-table-data mt-4"
+            }
+          >
+            <div className="category-table-data-remove">
+              <h2 className="grapich-title">Detail Kategori</h2>
+
+              <div className="d-flex" style={{ position: "relative" }}>
+                <Input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyUp={handleCangeSearch}
+                  placeholder="Cari Kategori..."
+                  className={
+                    darkMode
+                      ? "input-all-dark-mode input-search-category"
+                      : "input-all input-search-category"
+                  }
+                  iconleft={<BsSearch className="iconLeft" />}
+                  style={{ paddingLeft: "40px" }}
+                />
+              </div>
+            </div>
+
+            {category.loadingSearch ? null : category.categoryData.length >
+              0 ? (
+              <div className="category-pagination-main">
+                {pages.map((number) => (
+                  // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>
+                  <Pagination.Item
+                    onClick={(e) => handlePagination(e, number)}
+                    key={number}
+                    active={number === activePage}
+                    className="category-pagination"
+                  >
+                    {number + 1}
+                  </Pagination.Item>
+                ))}
+              </div>
+            ) : null}
+
+            {category.loadingSearch ? (
+              <div
+                className="d-flex justify-content-center align-items-center"
+                style={{ height: "171px" }}
+              >
+                <div>
+                  <ImSpinner9 className="loading loading-md mr-2" />
+                  Mencari.....
+                </div>
+              </div>
+            ) : category.categoryData.length > 0 ? (
+              <Table
+                striped
+                bordered
+                hover
+                responsive="lg"
+                className={
+                  darkMode ? "table-data text-color-dark-mode" : "table-data"
+                }
+              >
+                <thead>
+                  <tr>
+                    <th>_id</th>
+                    <th>Nama</th>
+                    <th>Slug</th>
+                    <th>Type</th>
+                    <th>Dibuat Tanggal</th>
+                    <th>Diubah Tanggal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category.categoryData &&
+                    category.categoryData.map((item, i) => (
+                      <tr
+                        key={item._id}
+                        className={darkMode ? "link-color-dark-mode" : ""}
+                      >
+                        <td>{i + 1 + 10 * (category.current_page - 1)}</td>
+                        <td>{item.name}</td>
+                        <td>{item.slug}</td>
+                        <td>
+                          {item.type !== "undefined" ? (
+                            item.type
+                          ) : (
+                            <span
+                              style={{
+                                display: "inline-block",
+                                background: "red",
+                                padding: "2px 5px",
+                                color: "white",
+                                borderRadius: "2px",
+                              }}
+                            >
+                              ||
+                            </span>
+                          )}
+                        </td>
+                        <td>{item.createdAt}</td>
+                        <td>{item.updatedAt}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
+            ) : (
+              <div className="category-notfound">
+                <RiFileWarningFill className="category-notfound-icon" />
+                <h2>Tidak Ditemukan!</h2>
+              </div>
+            )}
+          </div>
+        ) : null}
+
         <div className="category-content mt-3">
           <div className="category-content-left">
             <div
@@ -851,135 +969,6 @@ function Category() {
           </div>
         </div>
 
-        {category.categories.length > 0 ? (
-          <div
-            className={
-              darkMode
-                ? "category-table-data mt-4 bg-content-dark-mode"
-                : "category-table-data mt-4"
-            }
-          >
-            <div className="category-table-data-remove">
-              <h2 className="grapich-title">Detail Kategori</h2>
-              {
-                <motion.button
-                  whileTap={{
-                    scale: 0.97,
-                  }}
-                  className={darkMode ? "bg-delete-dark-mode" : ""}
-                  onClick={handleRemoveAllcategory}
-                >
-                  <TiFolderDelete className="category-action-icon category-action-delete " />
-                  Hapus semua kategori
-                </motion.button>
-              }
-              <div className="d-flex" style={{ position: "relative" }}>
-                <Input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  onKeyUp={handleCangeSearch}
-                  placeholder="Cari Kategori..."
-                  className={
-                    darkMode
-                      ? "input-all-dark-mode input-search-category"
-                      : "input-all input-search-category"
-                  }
-                  iconleft={<BsSearch className="iconLeft" />}
-                  style={{ paddingLeft: "40px" }}
-                />
-              </div>
-            </div>
-
-            {category.loadingSearch ? null : category.categoryData.length >
-              0 ? (
-              <div className="category-pagination-main">
-                {pages.map((number) => (
-                  // <button key={number} className={ activePage == number ? 'category-pagination active' : 'category-pagination'} onClick={(e) => handlePagination(e, number)}>{number+1}</button>
-                  <Pagination.Item
-                    onClick={(e) => handlePagination(e, number)}
-                    key={number}
-                    active={number === activePage}
-                    className="category-pagination"
-                  >
-                    {number + 1}
-                  </Pagination.Item>
-                ))}
-              </div>
-            ) : null}
-
-            {category.loadingSearch ? (
-              <div
-                className="d-flex justify-content-center align-items-center"
-                style={{ height: "171px" }}
-              >
-                <div>
-                  <ImSpinner9 className="loading loading-md mr-2" />
-                  Mencari.....
-                </div>
-              </div>
-            ) : category.categoryData.length > 0 ? (
-              <Table
-                striped
-                bordered
-                hover
-                responsive="lg"
-                className={
-                  darkMode ? "table-data text-color-dark-mode" : "table-data"
-                }
-              >
-                <thead>
-                  <tr>
-                    <th>_id</th>
-                    <th>Nama</th>
-                    <th>Slug</th>
-                    <th>Type</th>
-                    <th>Dibuat Tanggal</th>
-                    <th>Diubah Tanggal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {category.categoryData &&
-                    category.categoryData.map((item, i) => (
-                      <tr
-                        key={item._id}
-                        className={darkMode ? "link-color-dark-mode" : ""}
-                      >
-                        <td>{i + 1 + 10 * (category.current_page - 1)}</td>
-                        <td>{item.name}</td>
-                        <td>{item.slug}</td>
-                        <td>
-                          {item.type !== "undefined" ? (
-                            item.type
-                          ) : (
-                            <span
-                              style={{
-                                display: "inline-block",
-                                background: "red",
-                                padding: "2px 5px",
-                                color: "white",
-                                borderRadius: "2px",
-                              }}
-                            >
-                              ||
-                            </span>
-                          )}
-                        </td>
-                        <td>{item.createdAt}</td>
-                        <td>{item.updatedAt}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
-            ) : (
-              <div className="category-notfound">
-                <RiFileWarningFill className="category-notfound-icon" />
-                <h2>Tidak Ditemukan!</h2>
-              </div>
-            )}
-          </div>
-        ) : null}
-
         <div
           className={
             darkMode
@@ -1066,7 +1055,6 @@ function Category() {
       {renderModalAddCategory()}
       {renderModalRemoveCategory()}
       {renderModalUpdateCategory()}
-      {renderModalRemoveAllcategory()}
 
       {category.error ? (
         <div className="message-validasi-error message-validasi">
