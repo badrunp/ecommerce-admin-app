@@ -70,11 +70,6 @@ export default (state = initialState, action) => {
     //         chats: state.chats.concat(action.payload.chats)
     //     }
     //     break;
-    case chatConstant.GETUSERONLINE:
-      state = {
-        ...state,
-        userOnline: action.payload.data,
-      };
   }
 
   return state;

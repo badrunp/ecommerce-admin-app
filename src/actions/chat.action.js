@@ -31,7 +31,6 @@ const getNotificationChats = (id) => {
         uid: id,
       };
       const res = await axiosApi.post("/chat/getnotificationchats", userId);
-      console.log(res);
       dispatch({
         type: "GETNOTIFICATIONMESSAGE",
         payload: {
@@ -118,17 +117,6 @@ export const outputChat = (msg) => {
         },
       });
     }
-  };
-};
-
-export const getUserOnline = (data) => {
-  return async (dispatch) => {
-    dispatch({
-      type: chatConstant.GETUSERONLINE,
-      payload: {
-        data: data,
-      },
-    });
   };
 };
 

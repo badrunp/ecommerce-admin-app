@@ -40,7 +40,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getNotificationChats(auth.user._id));
-  }, [auth.user._id]);
+  }, [auth]);
 
   useEffect(() => {
     dispatch(getChat());

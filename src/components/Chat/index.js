@@ -9,6 +9,7 @@ import {
   outputChat,
   removeNotificationChats,
   addNotificationChats,
+  getUserOnline,
 } from "../../actions";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -20,6 +21,7 @@ class Chat extends React.Component {
   state = {
     message: "",
     outputMsg: "",
+    is_scrool: false,
   };
 
   componentDidMount() {
@@ -45,6 +47,8 @@ class Chat extends React.Component {
       }
       this.props.dispatch(outputChat(this.state.outputMsg));
     });
+
+    this.scrollToBottom();
   }
 
   componentWillUnmount() {
@@ -54,7 +58,11 @@ class Chat extends React.Component {
 
   componentDidUpdate() {
     // this.messagesEnd.scrollIntoView({ behavior: 'smooth' })
-    this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+    // let localscroll = JSON.parse(localStorage.getItem("scroolchats"));
+    // if (this.state.outputMsg) {
+    //   this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;
+    // }
+    this.scrollToBottom();
   }
 
   handleCangeInput = (e) => {
@@ -64,6 +72,22 @@ class Chat extends React.Component {
   };
 
   handleShowChat = () => {
+    this.props.userOnline.userOnline.map((item) => {
+      if (item.userId !== this.props.auth.user._id && item.room !== "global") {
+        // let server = baseUrl;
+        // let socket = io(server);
+
+        this.socket.emit("joinRoom", {
+          name: this.props.auth.user.fullName,
+          room: "global",
+          userId: this.props.auth.user._id,
+        });
+
+        this.socket.on("usersList", ({ users }) => {
+          this.props.dispatch(getUserOnline(users));
+        });
+      }
+    });
     this.props.dispatch(handleShowChat());
     this.props.dispatch(removeNotificationChats(this.props.auth.user._id));
   };
@@ -95,6 +119,10 @@ class Chat extends React.Component {
     this.setState({ message: "" });
   };
 
+  scrollToBottom() {
+    this.el.scrollIntoView({ behavior: "smooth" });
+  }
+
   render() {
     return (
       <>
@@ -121,7 +149,7 @@ class Chat extends React.Component {
 
               <p className="user-online-info">
                 <div className="icon-user-online-info"></div> online:{" "}
-                {this.props.chats.userOnline.length}
+                {this.props.userOnline.userOnline.length}
               </p>
 
               <RiCloseLine
@@ -167,7 +195,7 @@ class Chat extends React.Component {
                           </div>
                         </div>
                         <div className="user-chating-image">
-                          {this.props.chats.userOnline.map((item, i) => {
+                          {this.props.userOnline.userOnline.map((item, i) => {
                             if (item.userId === chat.userId._id) {
                               return (
                                 <div className="icon-user-online" key={i}></div>
@@ -182,7 +210,7 @@ class Chat extends React.Component {
                     return (
                       <div className="chating-user-left" key={i}>
                         <div className="user-chating-image">
-                          {this.props.chats.userOnline.map((item) => {
+                          {this.props.userOnline.userOnline.map((item) => {
                             if (item.userId === chat.userId._id) {
                               return <div className="icon-user-online"></div>;
                             }
@@ -216,6 +244,12 @@ class Chat extends React.Component {
                     );
                   }
                 })}
+
+              <div
+                ref={(el) => {
+                  this.el = el;
+                }}
+              ></div>
 
               {/* <div
                                 ref={el => {
@@ -285,6 +319,7 @@ function mapsToProps(state) {
     chats: state.chats,
     auth: state.auth,
     darkMode: state.darkMode.darkMode,
+    userOnline: state.userOnline,
   };
 }
 
