@@ -56,6 +56,10 @@ function App() {
       userId: auth.user._id,
     });
 
+    socket.on("userleave", (msg) => {
+      console.log(msg);
+    });
+
     socket.on("usersList", ({ users }) => {
       dispatch(getUserOnline(users));
     });

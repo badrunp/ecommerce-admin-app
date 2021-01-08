@@ -147,10 +147,10 @@ class Chat extends React.Component {
                 <IoMdChatboxes /> Live Chat
               </h1>
 
-              <p className="user-online-info">
-                <div className="icon-user-online-info"></div> online:{" "}
+              <div className="user-online-info">
+                <p className="icon-user-online-info"></p> online:{" "}
                 {this.props.userOnline.userOnline.length}
-              </p>
+              </div>
 
               <RiCloseLine
                 onClick={this.handleShowChat}
@@ -210,9 +210,11 @@ class Chat extends React.Component {
                     return (
                       <div className="chating-user-left" key={i}>
                         <div className="user-chating-image">
-                          {this.props.userOnline.userOnline.map((item) => {
+                          {this.props.userOnline.userOnline.map((item, i) => {
                             if (item.userId === chat.userId._id) {
-                              return <div className="icon-user-online"></div>;
+                              return (
+                                <div className="icon-user-online" key={i}></div>
+                              );
                             }
                           })}
                           <img src={baseUrlImage(chat.userId.image)} alt="" />
@@ -250,14 +252,6 @@ class Chat extends React.Component {
                   this.el = el;
                 }}
               ></div>
-
-              {/* <div
-                                ref={el => {
-                                    this.messagesEnd = el;
-                                }}
-
-                                style={{ float: 'left', clear: 'both' }}
-                            /> */}
             </div>
             <div className="input-chating">
               <div className="main-input">

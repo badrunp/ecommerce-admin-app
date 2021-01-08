@@ -134,7 +134,8 @@
   height: 13px;
   border-radius: 50%;
   background-color: #28a745;
-  margin-right: 5px;
+  margin: 0 5px 0 0;
+  padding: 0;
 }
 
 .main-chating {
