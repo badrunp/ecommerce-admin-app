@@ -106,6 +106,20 @@ class Chat extends React.Component {
       return;
     }
 
+    if (chat.length === 0) {
+      return;
+    }
+
+    const c = chat.split(" ");
+    for (let i = 0; i < c.length; i++) {
+      if (c[i].length > 2) {
+        this.setState({
+          message: "",
+        });
+        return;
+      }
+    }
+
     const msgObj = {
       message: chat,
       time: time,

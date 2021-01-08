@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Layout from "../../components/Layout";
 import "./style.css";
 import { TiFolderDelete } from "react-icons/ti";
@@ -48,11 +48,13 @@ import {
 import { ImSpinner9 } from "react-icons/im";
 import { motion } from "framer-motion";
 import { BsSearch } from "react-icons/bs";
+import _debounce from "lodash.debounce";
 
 function Category() {
   const category = useSelector((state) => state.category);
   const { darkMode } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
+  const containerRef = useRef(null);
 
   const [expanded, setExpanded] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -67,6 +69,7 @@ function Category() {
   const [categoryImage, setcategoryImage] = useState("");
   const [search, setSearch] = useState("");
   const [randomR, setRandomR] = useState([]);
+  const [resize, setResize] = useState(0);
 
   const pages = new Array(category.totalPage).fill(null).map((v, i) => i);
 
@@ -104,6 +107,19 @@ function Category() {
       }, 100);
     }
   }, [category]);
+
+  useEffect(() => {
+    const handleResize = _debounce(
+      () => setResize(containerRef.current.offsetWidth),
+      100
+    );
+    console.log(resize);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setResize, resize]);
 
   const renderCategoryList = (categories) => {
     let myCategory = [];
@@ -857,6 +873,8 @@ function Category() {
             </div>
 
             <div
+              ref={containerRef}
+              style={{ flexDirection: `${resize <= 385 ? "column" : "row"}` }}
               className={
                 categoryTotalMax(category.categories).length > 0
                   ? `${

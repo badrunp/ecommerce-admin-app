@@ -247,8 +247,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  flex: 1;
+  width: 50%;
   flex-direction: column;
 }
 
@@ -261,6 +260,7 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .category-content-total {

@@ -453,7 +453,7 @@ function Product(props) {
       <ModalM
         show={showModalProductDescription}
         onHide={() => setShowModalProductDescription(false)}
-        bgColor="#fd7e14"
+        bgColor="#0f66bd"
         nonButton
         title="Deskripsi"
         size="lg"
@@ -579,7 +579,7 @@ function Product(props) {
                     <th>Nama</th>
                     <th>Slug</th>
                     <th>Gambar</th>
-                    <th>Jumlah</th>
+                    <th>Stok</th>
                     <th>Harga</th>
                     <th>Deskripsi</th>
                     <th>Category</th>
