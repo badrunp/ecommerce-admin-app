@@ -106,7 +106,7 @@ class Chat extends React.Component {
 
     const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
     const checkChat =
-      this.props.chats.chats.length > 0 && oldChat.message === chat;
+      this.props.chats.chats.length === 0 || oldChat.message === chat;
 
     if (checkChat && oldChat.userId._id === userId) {
       return;
