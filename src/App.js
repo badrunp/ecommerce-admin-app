@@ -52,18 +52,29 @@ function App() {
     let server = baseUrl;
     let socket = io(server);
 
-    socket.emit("joinRoom", {
-      name: auth.user.fullName,
-      room: "global",
-      userId: auth.user._id,
-    });
+    socket.on("connect", () => {
+      console.log("connect");
 
-    socket.on("userleave", (msg) => {
-      console.log(msg);
-    });
+      socket.emit("joinRoom", {
+        name: auth.user.fullName,
+        room: "global",
+        userId: auth.user._id,
+      });
 
-    socket.on("usersList", ({ users }) => {
-      dispatch(getUserOnline(users));
+      socket.on("pinglive", (count) => {});
+
+      socket.on("userleave", (msg) => {
+        console.log(msg);
+      });
+
+      let count = 0;
+      setInterval(() => {
+        socket.volatile.emit("ping", ++count);
+      }, 1000);
+
+      socket.on("usersList", ({ users }) => {
+        dispatch(getUserOnline(users));
+      });
     });
   }, [auth]);
 

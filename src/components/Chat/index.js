@@ -80,8 +80,8 @@ class Chat extends React.Component {
     });
 
     if (checkCount.length === 0) {
-      let server = baseUrl;
-      let socket = io(server);
+      // let server = baseUrl;
+      // let socket = io(server);
 
       this.socket.emit("joinRoom", {
         name: this.props.auth.user.fullName,
