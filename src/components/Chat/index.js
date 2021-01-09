@@ -114,7 +114,7 @@ class Chat extends React.Component {
 
     const c = chat.split(" ");
     for (let i = 0; i < c.length; i++) {
-      if (c[i].length > 2) {
+      if (c[i].length > 20) {
         this.setState({
           message: "",
         });
