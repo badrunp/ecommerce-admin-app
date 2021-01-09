@@ -105,8 +105,9 @@ class Chat extends React.Component {
     }
 
     const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
+    const chatL = oldChat.message.toLowerCase();
 
-    if (chat === oldChat.message && oldChat.userId._id === userId) {
+    if (chat.toLowerCase() === chatL && oldChat.userId._id === userId) {
       this.setState({
         message: "",
       });

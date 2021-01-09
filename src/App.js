@@ -39,7 +39,9 @@ function App() {
   }, [checkDarkMode]);
 
   useEffect(() => {
-    dispatch(getNotificationChats(auth.user._id));
+    if (auth.authenticate) {
+      dispatch(getNotificationChats(auth.user._id));
+    }
   }, [auth]);
 
   useEffect(() => {
