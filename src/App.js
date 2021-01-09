@@ -13,7 +13,7 @@ import {
 } from "./actions";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import { checkDarkMode } from "./actions/darkmode.action";
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 import { baseUrl } from "./configs/urlConfigs";
 
 function App() {
@@ -50,10 +50,24 @@ function App() {
 
   useEffect(() => {
     let server = baseUrl;
-    let socket = io(server);
+    let socket = io(server, {
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      randomizationFactor: 0.5,
+      timeout: 5000,
+      autoConnect: true,
+      auth: {
+        token: localStorage.getItem("token")
+          ? localStorage.getItem("token")
+          : "",
+      },
+    });
 
     socket.on("connect", () => {
       console.log("connect");
+      console.log(socket.id);
 
       socket.emit("joinRoom", {
         name: auth.user.fullName,
@@ -75,6 +89,18 @@ function App() {
       socket.on("usersList", ({ users }) => {
         dispatch(getUserOnline(users));
       });
+    });
+
+    // socket = io({
+    //   auth: (cb) => {
+    //     cb(localStorage.getItem("token"));
+    //   },
+    // });
+
+    socket.on("connect_error", () => {
+      setTimeout(() => {
+        socket.connect();
+      }, 1000);
     });
   }, [auth]);
 
