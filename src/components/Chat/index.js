@@ -100,13 +100,15 @@ class Chat extends React.Component {
 
     // const userM = this.props.auth.map((item) => item._id === userId);
 
-    const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
-
-    if (oldChat.message === chat && oldChat.userId._id === userId) {
+    if (chat.length === 0) {
       return;
     }
 
-    if (chat.length === 0) {
+    const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
+    const checkChat =
+      this.props.chats.chats.length > 0 && oldChat.message === chat;
+
+    if (checkChat && oldChat.userId._id === userId) {
       return;
     }
 
