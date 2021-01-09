@@ -105,10 +105,11 @@ class Chat extends React.Component {
     }
 
     const oldChat = this.props.chats.chats[this.props.chats.chats.length - 1];
-    const checkChat =
-      this.props.chats.chats.length === 0 || oldChat.message === chat;
 
-    if (checkChat && oldChat.userId._id === userId) {
+    if (chat === oldChat.message && oldChat.userId._id === userId) {
+      this.setState({
+        message: "",
+      });
       return;
     }
 
