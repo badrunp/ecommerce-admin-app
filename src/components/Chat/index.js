@@ -72,22 +72,28 @@ class Chat extends React.Component {
   };
 
   handleShowChat = () => {
+    const checkCount = [];
     this.props.userOnline.userOnline.map((item) => {
-      if (item.userId !== this.props.auth.user._id && item.room !== "global") {
-        // let server = baseUrl;
-        // let socket = io(server);
-
-        this.socket.emit("joinRoom", {
-          name: this.props.auth.user.fullName,
-          room: "global",
-          userId: this.props.auth.user._id,
-        });
-
-        this.socket.on("usersList", ({ users }) => {
-          this.props.dispatch(getUserOnline(users));
-        });
+      if (item.userId === this.props.auth.user._id && item.room === "global") {
+        checkCount.push(item);
       }
     });
+
+    if (checkCount.length === 0) {
+      let server = baseUrl;
+      let socket = io(server);
+
+      this.socket.emit("joinRoom", {
+        name: this.props.auth.user.fullName,
+        room: "global",
+        userId: this.props.auth.user._id,
+      });
+
+      this.socket.on("usersList", ({ users }) => {
+        this.props.dispatch(getUserOnline(users));
+      });
+    }
+
     this.props.dispatch(handleShowChat());
     this.props.dispatch(removeNotificationChats(this.props.auth.user._id));
   };
