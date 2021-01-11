@@ -8,8 +8,10 @@ function PrivateComp({ component: Component, ...rest }) {
   const category = useSelector((state) => state.category);
 
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 3000);
-  }, []);
+    if (!category.load) {
+      setTimeout(() => setSpinner(false), 3000);
+    }
+  }, [category.load]);
   return (
     <Route
       {...rest}
@@ -17,11 +19,11 @@ function PrivateComp({ component: Component, ...rest }) {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         if (token && user) {
-          if (spinner) {
+          if (spinner && category.load) {
             return (
               <>
                 <div className="loader-main">
-                  <div class="lds-dual-ring"></div>
+                  <div className="lds-dual-ring"></div>
                   Memuat....
                 </div>
               </>

@@ -12,6 +12,7 @@ const initialState = {
   current_page: null,
   updateGrapich: false,
   loadingSearch: false,
+  load: false,
   // category_pagination: 1
 };
 
@@ -67,12 +68,14 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: action.payload.bool,
+        load: true,
       };
       break;
     case categoryConstant.GETALLCATEGORY:
       const cHistory = action.payload.categoryHistory.reverse();
       state = {
         ...state,
+        load: false,
         loadingSearch: false,
         categories: action.payload.categories,
         categoryLength: action.payload.categoryLength,

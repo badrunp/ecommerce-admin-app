@@ -91,12 +91,6 @@ function Category() {
       setRandomR([]);
     }
 
-    if (category.updateGrapich) {
-      setTimeout(() => {
-        dispatch(updateGrapich());
-      }, 200);
-    }
-
     if (randomR.length === 0) {
       setRandomR(categoryTotalMax(category.categories));
     }
@@ -182,9 +176,9 @@ function Category() {
     const sh = data.sort((a, b) => b.Jumlah - a.Jumlah);
     const ah = sh.filter((item) => item.Jumlah !== 0);
     const sp = ah.slice(0, 5);
-    const random = sp.sort(() => 0.5 - Math.random());
+    // const random = sp.sort(() => 0.5 - Math.random());
 
-    return random;
+    return sp;
   };
 
   const addNewCategory = () => {
@@ -568,11 +562,11 @@ function Category() {
       {category.loading && !category.loadingSearch ? (
         <div className="loading-2">
           <ImSpinner9 className="loading-2-icon" />
-          <div class="lds-ring">
+          {/* <div class="lds-ring">
             <div></div>
             <div></div>
             <div></div>
-          </div>
+          </div> */}
         </div>
       ) : null}
       <div className="category">
@@ -963,7 +957,7 @@ function Category() {
                 <ComposedChart
                   width={600}
                   height={300}
-                  data={randomR}
+                  data={categoryTotalMax(category.categories)}
                   margin={{
                     top: 30,
                     right: 10,

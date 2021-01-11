@@ -19,11 +19,6 @@ import { baseUrl } from "./configs/urlConfigs";
 function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const [spinner, setSpinner] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setSpinner(false), 1000);
-  }, []);
 
   useEffect(() => {
     if (!auth.authenticate) {
@@ -75,9 +70,6 @@ function App() {
     });
 
     socket.on("connect", () => {
-      console.log("connect");
-      console.log(socket.connected);
-
       socket.emit("joinRoom", {
         name: auth.user.fullName,
         room: "global",

@@ -12,6 +12,7 @@ const getAllCategory = (page, search, bool = false) => {
         `/category/getcategory?page=${page || 1}`,
         search
       );
+      console.log(res);
       dispatch({
         type: categoryConstant.GETALLCATEGORY,
         payload: {
@@ -39,7 +40,6 @@ const getAllCategory = (page, search, bool = false) => {
 //             console.log(error);
 //         }
 //     }
-
 // }
 
 export const addCategory = (form) => {
