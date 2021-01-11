@@ -1,7 +1,7 @@
 import "./App.css";
 import Routes from "./configs/routes";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllCategory,
@@ -19,6 +19,11 @@ import { baseUrl } from "./configs/urlConfigs";
 function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [spinner, setSpinner] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setSpinner(false), 1000);
+  }, []);
 
   useEffect(() => {
     if (!auth.authenticate) {

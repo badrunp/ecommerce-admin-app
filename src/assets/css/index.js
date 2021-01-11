@@ -1,5 +1,3 @@
-import AuthCss from './auth.css'
+import AuthCss from "./auth.css";
 
-export {
-    AuthCss
-}
+export { AuthCss };

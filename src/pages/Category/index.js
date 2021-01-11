@@ -113,7 +113,7 @@ function Category() {
       () => setResize(containerRef.current.offsetWidth),
       100
     );
-    console.log(resize);
+
     window.addEventListener("resize", handleResize);
 
     return () => {
