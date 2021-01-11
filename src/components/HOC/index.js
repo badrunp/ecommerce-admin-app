@@ -17,7 +17,7 @@ function PrivateComp({ component: Component, ...rest }) {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         if (token && user) {
-          if (category.loading || spinner) {
+          if (spinner) {
             return (
               <>
                 <div className="loader-main">

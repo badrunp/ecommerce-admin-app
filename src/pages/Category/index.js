@@ -94,7 +94,7 @@ function Category() {
     if (category.updateGrapich) {
       setTimeout(() => {
         dispatch(updateGrapich());
-      }, 100);
+      }, 200);
     }
 
     if (randomR.length === 0) {
@@ -568,6 +568,11 @@ function Category() {
       {category.loading && !category.loadingSearch ? (
         <div className="loading-2">
           <ImSpinner9 className="loading-2-icon" />
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       ) : null}
       <div className="category">

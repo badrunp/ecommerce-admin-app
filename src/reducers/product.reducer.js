@@ -13,6 +13,7 @@ const initialState = {
   updateGrapich: false,
   productHistory: [],
   loadingSearch: false,
+  load: false,
 };
 
 export default (state = initialState, action) => {
