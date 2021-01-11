@@ -5,15 +5,10 @@ import "./style.css";
 
 function PrivateComp({ component: Component, ...rest }) {
   const [spinner, setSpinner] = useState(true);
-  const category = useSelector((state) => state.category);
 
   useEffect(() => {
-    if (spinner) {
-      if(category.load){
-        setSpinner(false)
-      }
-    }
-  }, [category.load]);
+    setTimeout(() => setSpinner(false), 3000);
+  }, []);
   return (
     <Route
       {...rest}
@@ -21,7 +16,7 @@ function PrivateComp({ component: Component, ...rest }) {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         if (token && user) {
-          if (spinner && category.load) {
+          if (spinner) {
             return (
               <>
                 <div className="loader-main">
