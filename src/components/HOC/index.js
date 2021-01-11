@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import "./style.css";
 
 function PrivateComp({ component: Component, ...rest }) {
   const [spinner, setSpinner] = useState(true);
+  const category = useSelector((state) => state.category);
 
   useEffect(() => {
     setTimeout(() => setSpinner(false), 3000);
@@ -15,7 +17,7 @@ function PrivateComp({ component: Component, ...rest }) {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         if (token && user) {
-          if (spinner) {
+          if (category.loading || spinner) {
             return (
               <>
                 <div className="loader-main">
