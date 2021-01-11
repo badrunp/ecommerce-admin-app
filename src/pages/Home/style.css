@@ -1,0 +1,22 @@
+.home {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+}
+
+.container-card {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.box-card {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(90, 62, 62, 0.03);
+  position: relative;
+  flex: 1;
+}

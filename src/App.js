@@ -56,8 +56,12 @@ function App() {
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
       randomizationFactor: 0.5,
-      timeout: 5000,
+      transports: ["polling", "websocket"],
+      secure: true,
+      timeout: 50000,
+      pingTimeout: 50000,
       autoConnect: true,
+      rejectUnauthorized: false,
       auth: {
         token: localStorage.getItem("token")
           ? localStorage.getItem("token")
@@ -67,18 +71,12 @@ function App() {
 
     socket.on("connect", () => {
       console.log("connect");
-      console.log(socket.id);
+      console.log(socket.connected);
 
       socket.emit("joinRoom", {
         name: auth.user.fullName,
         room: "global",
         userId: auth.user._id,
-      });
-
-      socket.on("pinglive", (count) => {});
-
-      socket.on("userleave", (msg) => {
-        console.log(msg);
       });
 
       let count = 0;
@@ -91,17 +89,17 @@ function App() {
       });
     });
 
-    // socket = io({
-    //   auth: (cb) => {
-    //     cb(localStorage.getItem("token"));
-    //   },
-    // });
-
     socket.on("connect_error", () => {
       setTimeout(() => {
         socket.connect();
       }, 1000);
     });
+
+    // socket = io({
+    //   auth: (cb) => {
+    //     cb(localStorage.getItem("token"));
+    //   },
+    // });
   }, [auth]);
 
   return (

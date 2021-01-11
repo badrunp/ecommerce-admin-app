@@ -91,6 +91,12 @@ function Category() {
       setRandomR([]);
     }
 
+    if (category.updateGrapich) {
+      setTimeout(() => {
+        dispatch(updateGrapich());
+      }, 100);
+    }
+
     if (randomR.length === 0) {
       setRandomR(categoryTotalMax(category.categories));
     }
@@ -99,12 +105,6 @@ function Category() {
       setTimeout(() => {
         dispatch(closeMessageValidasi());
       }, 3000);
-    }
-
-    if (category.updateGrapich) {
-      setTimeout(() => {
-        dispatch(updateGrapich());
-      }, 100);
     }
   }, [category]);
 

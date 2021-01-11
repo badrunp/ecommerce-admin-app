@@ -185,7 +185,7 @@ export const closeMessageValidasi = () => {
 export const updateGrapich = () => {
   return async (dispatch) => {
     dispatch({
-      type: "UPDATEGRAPICH",
+      type: "UPDATEGRAPICHC",
     });
   };
 };

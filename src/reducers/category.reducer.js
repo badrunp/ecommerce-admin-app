@@ -210,7 +210,7 @@ export default (state = initialState, action) => {
         message: "",
       };
       break;
-    case "UPDATEGRAPICH":
+    case "UPDATEGRAPICHC":
       state = {
         ...state,
         updateGrapich: false,

@@ -1,11 +1,27 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import "./style.css";
 
 function Home() {
   return (
     <>
       <Layout>
-        <h1>Selamat Datang</h1>
+        <div className="home">
+          <div className="container-card">
+            <div className="card box-card">
+              <p>Hi</p>
+            </div>
+            <div className="card box-card">
+              <p>Hi</p>
+            </div>
+            <div className="card box-card">
+              <p>Hi</p>
+            </div>
+            <div className="card box-card">
+              <p>Hi</p>
+            </div>
+          </div>
+        </div>
       </Layout>
     </>
   );
