@@ -8,8 +8,10 @@ function PrivateComp({ component: Component, ...rest }) {
   const category = useSelector((state) => state.category);
 
   useEffect(() => {
-    if (!category.load) {
-      setTimeout(() => setSpinner(false), 3000);
+    if (spinner) {
+      if(category.load){
+        setSpinner(false)
+      }
     }
   }, [category.load]);
   return (
