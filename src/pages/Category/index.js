@@ -168,20 +168,20 @@ function Category() {
 
   const categoryTotalMax = (categories, data = []) => {
     for (let cate of categories) {
-      if (cate.children.length != 0) {
-        data.push({
-          name: cate.name,
-          Jumlah: cate.children.length == 0 ? 0 : cate.children.length,
-          Jumlah: cate.children.length == 0 ? 0 : cate.children.length,
-        });
+      data.push({
+        name: cate.name,
+        Jumlah: cate.children.length == 0 ? 0 : cate.children.length,
+        Jumlah: cate.children.length == 0 ? 0 : cate.children.length,
+      });
 
-        if (cate.children.length > 0) {
-          categoryTotalMax(cate.children, data);
-        }
+      if (cate.children.length > 0) {
+        categoryTotalMax(cate.children, data);
       }
     }
+
     const sh = data.sort((a, b) => b.Jumlah - a.Jumlah);
-    const sp = sh.slice(0, 5);
+    const ah = sh.filter((item) => item.Jumlah !== 0);
+    const sp = ah.slice(0, 5);
     const random = sp.sort(() => 0.5 - Math.random());
 
     return random;
