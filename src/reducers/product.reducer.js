@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: action.payload.bool,
+        load: true,
       };
       break;
     case productConstant.GETALLPRODUCT_SUCCESS:
@@ -29,6 +30,7 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: false,
+        load: true,
         products: action.payload.products,
         productsS: action.payload.productsS,
         totalData: action.payload.totalData,
@@ -77,7 +79,7 @@ export default (state = initialState, action) => {
       break;
     case productConstant.DELETEPRODUCT_SUCCESS:
       const pid = action.payload.data.productId;
-      const updateProducts = state.products.filter((item) => item._id != pid);
+      const updateProducts = state.products.filter((item) => item._id !== pid);
       const updateHistoryD = [
         action.payload.productHistory,
         ...state.productHistory,

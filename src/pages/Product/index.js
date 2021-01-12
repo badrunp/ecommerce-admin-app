@@ -476,6 +476,11 @@ function Product(props) {
           <ImSpinner9 className="loading-2-icon" />
         </div>
       ) : null}
+      {products.load && products.products.length === 0 ? (
+        <div className="loading-2">
+          <ImSpinner9 className="loading-2-icon" />
+        </div>
+      ) : null}
       <div className="container-layout product">
         <div
           className={

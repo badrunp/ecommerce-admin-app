@@ -570,7 +570,7 @@ function Category() {
         </div>
       ) : null}
 
-      {category.categories.length === 0 ? (
+      {category.categories.length === 0 && category.load ? (
         <div className="loading-2">
           <ImSpinner9 className="loading-2-icon" />
         </div>

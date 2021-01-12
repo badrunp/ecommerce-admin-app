@@ -7,7 +7,7 @@ function PrivateComp({ component: Component, ...rest }) {
   const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 3000);
+    setTimeout(() => setSpinner(false), 1000);
   }, []);
   return (
     <Route
