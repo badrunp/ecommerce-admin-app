@@ -117,6 +117,7 @@ function Home() {
               </div>
             </div>
           </div>
+          <div className="clearfix"></div>
         </div>
       </Layout>
     </>
