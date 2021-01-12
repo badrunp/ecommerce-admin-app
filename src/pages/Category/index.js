@@ -69,7 +69,7 @@ function Category() {
   const [categoryImage, setcategoryImage] = useState("");
   const [search, setSearch] = useState("");
   const [randomR, setRandomR] = useState([]);
-  const [resize, setResize] = useState(0);
+  const [resize, setResize] = useState(386);
 
   const pages = new Array(category.totalPage).fill(null).map((v, i) => i);
 

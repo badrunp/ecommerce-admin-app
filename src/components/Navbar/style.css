@@ -115,6 +115,27 @@
   display: flex;
 }
 
+.navbar-right-setting {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+}
+
+.setting-icon-s {
+  font-size: 20px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.setting-icon-s:hover {
+  background-color: rgba(236, 237, 240, 0.7);
+}
+
 .navbar-notifikasi {
   width: 65px;
   height: 60px;
@@ -124,7 +145,6 @@
   position: relative;
   border-left: 2px solid #e5e9f2;
   border-right: 2px solid #e5e9f2;
-  margin-right: 10px;
 }
 
 .box-notifikasi-icon {
@@ -267,7 +287,7 @@
 .user-dropdown-menu {
   padding: 10px 0;
   border-top: 1px solid #e5e9f2;
-  border-bottom: 1px solid #e5e9f2;
+  border-bottom: 1px solid #757983;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -328,6 +348,99 @@
   display: block;
 }
 
+.s-setting {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  max-width: 270px;
+  right: -100%;
+  width: 80%;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
+  transition: all 0.05s ease;
+}
+
+.s-setting.active {
+  right: 0;
+}
+
+.blank-s-setting {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.08);
+  z-index: 998;
+}
+
+.s-setting-header {
+  width: 100%;
+  height: 60px;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.s-setting-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.s-setting-title p {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.s-setting-icon {
+  font-size: 25px;
+  margin-right: 8px;
+  margin-left: 15px;
+}
+
+.s-setting-close-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.s-setting-main-menu {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding: 10px 15px;
+}
+
+.s-setting-main-menu li:nth-child(1) {
+  margin-top: 0;
+}
+
+.s-setting-main-menu li {
+  list-style: none;
+  width: 100%;
+  height: 34px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e9f2;
+  margin-top: 10px;
+}
+
+.s-setting-main-menu ul li a:hover {
+  text-decoration: none;
+}
+
+.s-main-menu-icon {
+  margin-right: 5px;
+}
+
 /* akhir navbar user info */
 
 @media (max-width: 577px) {
@@ -347,6 +460,7 @@
     display: none;
   }
   .navbar-notifikasi {
+    width: 50px;
     border-left: none;
     border-right: none;
     margin-right: -5px;
@@ -354,6 +468,11 @@
 
   .navbar-right {
     margin-right: 0;
+  }
+
+  .navbar-right-setting {
+    padding: 0;
+    width: 40px;
   }
 
   .notifikasi-icon {
@@ -380,7 +499,6 @@
   .navbar-notifikasi {
     border-left: 2px solid #e5e9f2;
     border-right: 2px solid #e5e9f2;
-    margin-right: 10px;
   }
   .user-name {
     display: block;
@@ -401,7 +519,6 @@
   .navbar-notifikasi {
     border-left: 2px solid #e5e9f2;
     border-right: 2px solid #e5e9f2;
-    margin-right: 10px;
   }
 
   .user-name {

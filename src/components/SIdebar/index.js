@@ -148,23 +148,6 @@ function Sidebar() {
                   <span className="sidebar-link-name">Order</span>
                 </NavLink>
               </li>
-
-              <div className="mt-5">
-                <li
-                  onClick={() => {
-                    if (isClose) {
-                      dispatch(closeSidebarMenu(false));
-                    }
-                  }}
-                >
-                  <NavLink to="/order" className="sidebar-link">
-                    <div className="sidebar-link-icon">
-                      <AiTwotoneSetting className="menu-link-icon" />
-                    </div>
-                    <span className="sidebar-link-name">Pengaturan</span>
-                  </NavLink>
-                </li>
-              </div>
             </ul>
           </div>
         </div>

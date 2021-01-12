@@ -14,18 +14,27 @@ import { FiMenu } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import { AiTwotoneSetting } from "react-icons/ai";
-import { RiLogoutBoxRLine } from "react-icons/ri";
+import { RiLogoutBoxRLine, RiHandbagLine } from "react-icons/ri";
 import Input from "../Ui/Input";
 import { BiSun } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { baseUrlImage } from "../../configs/urlConfigs";
 import { onDarkMode } from "../../actions/darkmode.action";
-import { IoIosCloudyNight, IoIosPartlySunny } from "react-icons/io";
+import {
+  IoIosCloudyNight,
+  IoIosPartlySunny,
+  IoMdChatboxes,
+} from "react-icons/io";
 import { TiWeatherPartlySunny } from "react-icons/ti";
+import { showSetting } from "../../actions/showSetting.action";
+import { VscKey } from "react-icons/vsc";
+import { BsPencil } from "react-icons/bs";
+import { FiAirplay } from "react-icons/fi";
 
 function Navbar() {
   const sidebar = useSelector((state) => state.sidebar);
   const auth = useSelector((state) => state.auth);
+  const showS = useSelector((state) => state.showSetting);
   const { darkMode } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
@@ -39,6 +48,59 @@ function Navbar() {
   const logoutUser = () => {
     dispatch(logout());
   };
+
+  const renderShowSetting = () => {
+    return (
+      <>
+        <div className={showS.show ? "s-setting active" : "s-setting"}>
+          <div className="s-setting-header">
+            <div className="s-setting-title">
+              <AiTwotoneSetting className="s-setting-icon" />
+              <p>Pengaturan</p>
+            </div>
+            <IoIosClose
+              className="s-setting-close-icon"
+              onClick={() => dispatch(showSetting())}
+            />
+          </div>
+
+          <div className="s-setting-main-menu">
+            <ul>
+              <li>
+                <IoMdChatboxes className="s-main-menu-icon" />
+                <Link to="#">Chat</Link>
+              </li>
+              <li>
+                <VscKey className="s-main-menu-icon" />
+                <Link to="/profil/password/ubah">Edit Password</Link>
+              </li>
+              <li>
+                <RiHandbagLine className="s-main-menu-icon" />
+                <Link to="#">Produk</Link>
+              </li>
+              <li>
+                <BsPencil className="s-main-menu-icon" />
+                <Link to="#">Kategori</Link>
+              </li>
+              <li>
+                <FiAirplay className="s-main-menu-icon" />
+                <Link to="#">Halaman</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {showS.show ? (
+          <div
+            className="blank-s-setting"
+            onClick={() => dispatch(showSetting())}
+          ></div>
+        ) : null}
+      </>
+    );
+  };
+
+  const handleShowSetting = () => dispatch(showSetting());
 
   return (
     <>
@@ -84,6 +146,7 @@ function Navbar() {
                     height: "40px",
                     fontSize: "16px",
                     width: "100%",
+                    border: "none",
                   }}
                   type="text"
                   placeholder="Masukan Pencarian...   "
@@ -122,6 +185,16 @@ function Navbar() {
                 <IoIosNotificationsOutline className="notifikasi-icon" />
                 <div className="is-notifikasi-icon"></div>
               </div>
+            </div>
+            <div className="navbar-right-setting">
+              <AiTwotoneSetting
+                onClick={handleShowSetting}
+                className={
+                  darkMode
+                    ? "link-color-dark-mode setting-icon-s"
+                    : "setting-icon-s"
+                }
+              />
             </div>
             <div className="navbar-user-info">
               <div className={dropdown ? "user-info active" : "user-info"}>
@@ -240,6 +313,8 @@ function Navbar() {
         className={dropdown ? "dropdown-close active" : "dropdown-close"}
         onClick={() => setDropdown(!dropdown)}
       ></div>
+
+      {renderShowSetting()}
     </>
   );
 }
