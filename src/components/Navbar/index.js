@@ -10,7 +10,7 @@ import {
 } from "react-icons/io";
 import { closeSidebarMenu, logout } from "../../actions";
 import { ImSpinner9 } from "react-icons/im";
-import { FiMenu } from "react-icons/fi";
+import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import { AiTwotoneSetting, AiOutlineShoppingCart } from "react-icons/ai";
@@ -40,6 +40,10 @@ function Navbar() {
 
   const [dropdown, setDropdown] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const [showSubChat, setShowSubChat] = useState(false);
+  const [checkedChat, setCheckedChat] = useState(false);
+  const [showSubProduct, setShowSubChatProduct] = useState(false);
+  const [showSubCategory, setShowSubChatCategory] = useState(false);
 
   const handleDarkMode = () => {
     dispatch(onDarkMode());
@@ -47,6 +51,11 @@ function Navbar() {
 
   const logoutUser = () => {
     dispatch(logout());
+  };
+
+  const hanleCheckedChat = (e) => {
+    console.log(e.target.checked);
+    setCheckedChat(e.target.checked);
   };
 
   const renderShowSetting = () => {
@@ -67,28 +76,311 @@ function Navbar() {
           <div className="s-setting-main-menu">
             <ul>
               <li>
+                {showSubChat ? (
+                  <MdKeyboardArrowDown
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChat(!showSubChat)}
+                  />
+                ) : (
+                  <MdKeyboardArrowRight
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChat(!showSubChat)}
+                  />
+                )}
                 <IoMdChatboxes className="s-main-menu-icon" />
-                <Link to="#">Chat</Link>
+                <p onClick={() => setShowSubChat(!showSubChat)}>Chat</p>
+                <ul className={showSubChat ? "active" : ""}>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Tampilkan Chat
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <button className="s-button-h">Hapus Semua Chat</button>
+                  </li>
+                </ul>
               </li>
               <li>
                 <VscKey className="s-main-menu-icon" />
-                <Link to="/profil/password/ubah">Edit Password</Link>
+                <Link
+                  to="/profil/password/ubah"
+                  onClick={() => dispatch(showSetting())}
+                >
+                  Edit Password
+                </Link>
               </li>
               <li>
+                {showSubProduct ? (
+                  <MdKeyboardArrowDown
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChatProduct(!showSubProduct)}
+                  />
+                ) : (
+                  <MdKeyboardArrowRight
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChatProduct(!showSubProduct)}
+                  />
+                )}
                 <RiHandbagLine className="s-main-menu-icon" />
-                <Link to="#">Produk</Link>
+                <p>Produk</p>
+                <ul className={showSubProduct ? "active" : ""}>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        History Produk
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Jumlah Produk
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Produk Terlaris
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Produk Hampir Habis
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Produk Termahal
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <button className="s-button-h">Hapus Semua Produk</button>
+                  </li>
+                </ul>
               </li>
               <li>
+                {showSubCategory ? (
+                  <MdKeyboardArrowDown
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChatCategory(!showSubCategory)}
+                  />
+                ) : (
+                  <MdKeyboardArrowRight
+                    className="s-main-menu-icon-dowm"
+                    onClick={() => setShowSubChatCategory(!showSubCategory)}
+                  />
+                )}
                 <BsPencil className="s-main-menu-icon" />
-                <Link to="#">Kategori</Link>
+                <p onClick={() => setShowSubChatCategory(!showSubCategory)}>
+                  Kategori
+                </p>
+                <ul className={showSubCategory ? "active" : ""}>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        History Kategori
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Jumlah Kategori
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id="checChat"
+                        style={{
+                          width: "15px",
+                          height: "15px",
+                          cursor: "pointer",
+                        }}
+                        onChange={hanleCheckedChat}
+                        checked={checkedChat}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="checChat"
+                        style={{ cursor: "pointer", fontSize: "15px" }}
+                      >
+                        Kategori Terbanyak
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <button className="s-button-h">Hapus Semua Kategori</button>
+                  </li>
+                </ul>
               </li>
               <li>
                 <FiAirplay className="s-main-menu-icon" />
-                <Link to="#">Halaman</Link>
+                <p>Halaman</p>
               </li>
               <li>
                 <AiOutlineShoppingCart className="s-main-menu-icon" />
                 <Link to="#">Order</Link>
+              </li>
+              <li style={{ border: "none" }}>
+                <div className={darkMode ? "bg-content-dark-mode" : ""}>
+                  <div className="d-flex align-items-center">
+                    <div
+                      className={darkMode ? "toggle active" : "toggle"}
+                      onClick={handleDarkMode}
+                    ></div>
+                    {darkMode ? (
+                      <IoIosCloudyNight
+                        className="ml-2"
+                        style={{ fontSize: "25px" }}
+                      />
+                    ) : (
+                      <TiWeatherPartlySunny
+                        className="ml-2"
+                        style={{ fontSize: "25px" }}
+                      />
+                    )}
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -267,31 +559,7 @@ function Navbar() {
                     <FaUser className="icon-dropdown" /> Profil Saya
                   </Link>
                 </div>
-                <div
-                  className={
-                    darkMode
-                      ? "user-dropdown-menu bg-content-dark-mode"
-                      : "user-dropdown-menu"
-                  }
-                >
-                  <div className="d-flex align-items-center">
-                    <div
-                      className={darkMode ? "toggle active" : "toggle"}
-                      onClick={handleDarkMode}
-                    ></div>
-                    {darkMode ? (
-                      <IoIosCloudyNight
-                        className="ml-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                    ) : (
-                      <TiWeatherPartlySunny
-                        className="ml-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                    )}
-                  </div>
-                </div>
+
                 <div
                   className={
                     darkMode

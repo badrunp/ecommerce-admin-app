@@ -287,7 +287,7 @@
 .user-dropdown-menu {
   padding: 10px 0;
   border-top: 1px solid #e5e9f2;
-  border-bottom: 1px solid #757983;
+  border-bottom: 1px solid #e5e9f2;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -361,6 +361,7 @@
   background-color: white;
   box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
   transition: all 0.05s ease;
+  overflow-y: scroll;
 }
 
 .s-setting.active {
@@ -418,23 +419,69 @@
   padding: 10px 15px;
 }
 
-.s-setting-main-menu li:nth-child(1) {
+.s-setting-main-menu > ul > li:nth-child(1) {
   margin-top: 0;
 }
 
-.s-setting-main-menu li {
+.s-setting-main-menu > ul > li {
   list-style: none;
   width: 100%;
-  height: 34px;
+  height: auto;
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
   border-bottom: 1px solid #e5e9f2;
   margin-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
 }
 
-.s-setting-main-menu ul li a:hover {
+.s-main-menu-icon-dowm {
+  position: absolute;
+  right: -3px;
+  top: 0;
+  font-size: 22px;
+}
+
+.s-setting-main-menu > ul > li > p:hover,
+.s-setting-main-menu > ul > li > a:hover {
   text-decoration: none;
+  color: #0465cc;
+}
+.s-setting-main-menu > ul > li > p {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  width: 90%;
+}
+
+.s-setting-main-menu > ul > li > ul {
+  background-color: transparent;
+  position: relative;
+  padding-left: 25px;
+  display: none;
+}
+
+.s-setting-main-menu > ul > li > ul.active {
+  display: block;
+}
+
+.s-setting-main-menu > ul > li > ul > li {
+  padding: 5px 0;
+  position: relative;
+  width: 100%;
+  list-style: inherit;
+}
+
+.s-button-h {
+  background-color: #dc3545;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: white;
 }
 
 .s-main-menu-icon {
