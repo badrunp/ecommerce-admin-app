@@ -13,7 +13,7 @@ import { ImSpinner9 } from "react-icons/im";
 import { FiMenu } from "react-icons/fi";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
-import { AiTwotoneSetting } from "react-icons/ai";
+import { AiTwotoneSetting, AiOutlineShoppingCart } from "react-icons/ai";
 import { RiLogoutBoxRLine, RiHandbagLine } from "react-icons/ri";
 import Input from "../Ui/Input";
 import { BiSun } from "react-icons/bi";
@@ -85,6 +85,10 @@ function Navbar() {
               <li>
                 <FiAirplay className="s-main-menu-icon" />
                 <Link to="#">Halaman</Link>
+              </li>
+              <li>
+                <AiOutlineShoppingCart className="s-main-menu-icon" />
+                <Link to="#">Order</Link>
               </li>
             </ul>
           </div>
