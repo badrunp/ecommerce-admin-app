@@ -140,7 +140,9 @@ function Navbar() {
                   />
                 )}
                 <RiHandbagLine className="s-main-menu-icon" />
-                <p>Produk</p>
+                <p onClick={() => setShowSubChatProduct(!showSubProduct)}>
+                  Produk
+                </p>
                 <ul className={showSubProduct ? "active" : ""}>
                   <li>
                     <div className="form-check">
