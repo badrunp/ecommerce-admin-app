@@ -8,6 +8,7 @@ import productReducer from "./product.reducer";
 import showSettingReducer from "./showSetting.reducer";
 import userReducer from "./user.reducer";
 import userOnlineReducer from "./userOnline.reducer";
+import userSettingReducer from "./userSetting.reducer";
 
 const reducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   darkMode: darkmodeReducer,
   userOnline: userOnlineReducer,
   showSetting: showSettingReducer,
+  userSetting: userSettingReducer,
 });
 
 export default reducer;

@@ -6,3 +6,4 @@ export * from "./chat.action";
 export * from "./initialData.action";
 export * from "./product.action";
 export * from "./userOnline.action";
+export * from "./userSetting.action";

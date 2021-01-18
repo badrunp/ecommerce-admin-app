@@ -8,7 +8,15 @@ import {
   IoIosNotificationsOutline,
   IoIosClose,
 } from "react-icons/io";
-import { closeSidebarMenu, logout } from "../../actions";
+import {
+  closeSidebarMenu,
+  logout,
+  updateUserSettingHistoryProduct,
+  updateUserSettingProductQuantity,
+  updateUserSettingProductTop,
+  updateUserSettingProductLowQuantity,
+  updateUserSettingProductTopQuantity,
+} from "../../actions";
 import { ImSpinner9 } from "react-icons/im";
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
 import { HiMenuAlt2 } from "react-icons/hi";
@@ -36,14 +44,31 @@ function Navbar() {
   const auth = useSelector((state) => state.auth);
   const showS = useSelector((state) => state.showSetting);
   const { darkMode } = useSelector((state) => state.darkMode);
+  const userSetting = useSelector((state) => state.userSetting);
   const dispatch = useDispatch();
 
   const [dropdown, setDropdown] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [showSubChat, setShowSubChat] = useState(false);
-  const [checkedChat, setCheckedChat] = useState(false);
   const [showSubProduct, setShowSubChatProduct] = useState(false);
   const [showSubCategory, setShowSubChatCategory] = useState(false);
+
+  const [checkedChat, setCheckedChat] = useState(false);
+  const [checkedProductHistory, setCheckedProductHistory] = useState(
+    userSetting.product && userSetting.product.productHistory
+  );
+  const [checkedProductQuantity, setCheckedProductQuantity] = useState(
+    userSetting.product && userSetting.product.productQuantity
+  );
+  const [checkedProductTop, setCheckedProductTop] = useState(
+    userSetting.product && userSetting.product.productTop
+  );
+  const [checkedProductLowQuantity, setCheckedProductLowQuantity] = useState(
+    userSetting.product && userSetting.product.productLowQuantity
+  );
+  const [checkedProductTopQuantity, setCheckedProductTopQuantity] = useState(
+    userSetting.product && userSetting.product.productTopQuantity
+  );
 
   const handleDarkMode = () => {
     dispatch(onDarkMode());
@@ -54,10 +79,31 @@ function Navbar() {
   };
 
   const hanleCheckedChat = (e) => {
-    console.log(e.target.checked);
     setCheckedChat(e.target.checked);
   };
 
+  const hanleCheckedProductHistory = (e) => {
+    setCheckedProductHistory(!checkedProductHistory);
+    dispatch(updateUserSettingHistoryProduct(!checkedProductHistory));
+  };
+
+  const handleCheckedProductQuantity = (e) => {
+    setCheckedProductQuantity(!checkedProductQuantity);
+    dispatch(updateUserSettingProductQuantity(!checkedProductQuantity));
+  };
+
+  const handleCheckedProductTop = (e) => {
+    setCheckedProductTop(!checkedProductTop);
+    dispatch(updateUserSettingProductTop(!checkedProductTop));
+  };
+  const handleCheckedProductLowQuantity = (e) => {
+    setCheckedProductLowQuantity(!checkedProductLowQuantity);
+    dispatch(updateUserSettingProductLowQuantity(!checkedProductLowQuantity));
+  };
+  const handleCheckedProductTopQuantity = (e) => {
+    setCheckedProductTopQuantity(!checkedProductTopQuantity);
+    dispatch(updateUserSettingProductTopQuantity(!checkedProductTopQuantity));
+  };
   const renderShowSetting = () => {
     return (
       <>
@@ -75,6 +121,27 @@ function Navbar() {
 
           <div className="s-setting-main-menu">
             <ul>
+              <li style={{ border: "none" }}>
+                <div className={darkMode ? "bg-content-dark-mode" : ""}>
+                  <div className="d-flex align-items-center">
+                    <div
+                      className={darkMode ? "toggle active" : "toggle"}
+                      onClick={handleDarkMode}
+                    ></div>
+                    {darkMode ? (
+                      <IoIosCloudyNight
+                        className="ml-2"
+                        style={{ fontSize: "25px" }}
+                      />
+                    ) : (
+                      <TiWeatherPartlySunny
+                        className="ml-2"
+                        style={{ fontSize: "25px" }}
+                      />
+                    )}
+                  </div>
+                </div>
+              </li>
               <li>
                 {showSubChat ? (
                   <MdKeyboardArrowDown
@@ -109,12 +176,9 @@ function Navbar() {
                         htmlFor="checChat"
                         style={{ cursor: "pointer", fontSize: "15px" }}
                       >
-                        Tampilkan Chat
+                        Notifikasi
                       </label>
                     </div>
-                  </li>
-                  <li>
-                    <button className="s-button-h">Hapus Semua Chat</button>
                   </li>
                 </ul>
               </li>
@@ -155,8 +219,8 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={hanleCheckedProductHistory}
+                        checked={checkedProductHistory}
                       />
                       <label
                         className="form-check-label"
@@ -178,8 +242,8 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleCheckedProductQuantity}
+                        checked={checkedProductQuantity}
                       />
                       <label
                         className="form-check-label"
@@ -201,8 +265,8 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleCheckedProductTop}
+                        checked={checkedProductTop}
                       />
                       <label
                         className="form-check-label"
@@ -224,8 +288,8 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleCheckedProductLowQuantity}
+                        checked={checkedProductLowQuantity}
                       />
                       <label
                         className="form-check-label"
@@ -247,8 +311,8 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleCheckedProductTopQuantity}
+                        checked={checkedProductTopQuantity}
                       />
                       <label
                         className="form-check-label"
@@ -259,9 +323,9 @@ function Navbar() {
                       </label>
                     </div>
                   </li>
-                  <li>
+                  {/* <li>
                     <button className="s-button-h">Hapus Semua Produk</button>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
               <li>
@@ -350,9 +414,6 @@ function Navbar() {
                       </label>
                     </div>
                   </li>
-                  <li>
-                    <button className="s-button-h">Hapus Semua Kategori</button>
-                  </li>
                 </ul>
               </li>
               <li>
@@ -362,27 +423,6 @@ function Navbar() {
               <li>
                 <AiOutlineShoppingCart className="s-main-menu-icon" />
                 <Link to="#">Order</Link>
-              </li>
-              <li style={{ border: "none" }}>
-                <div className={darkMode ? "bg-content-dark-mode" : ""}>
-                  <div className="d-flex align-items-center">
-                    <div
-                      className={darkMode ? "toggle active" : "toggle"}
-                      onClick={handleDarkMode}
-                    ></div>
-                    {darkMode ? (
-                      <IoIosCloudyNight
-                        className="ml-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                    ) : (
-                      <TiWeatherPartlySunny
-                        className="ml-2"
-                        style={{ fontSize: "25px" }}
-                      />
-                    )}
-                  </div>
-                </div>
               </li>
             </ul>
           </div>

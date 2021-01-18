@@ -1,4 +1,8 @@
-import { loginConstant, logoutConstant } from "../configs/constant";
+import {
+  loginConstant,
+  logoutConstant,
+  userSettingConstant,
+} from "../configs/constant";
 import axiosApi from "../helpers/axios";
 
 const login = (user) => {
@@ -6,15 +10,26 @@ const login = (user) => {
     dispatch({ type: loginConstant.LOGIN_REQUEST });
     try {
       const res = await axiosApi.post("/admin/login", user);
+      console.log(res);
       if (res.status === 200) {
-        const { token, user } = res.data;
+        const { token, user, userSetting } = res.data;
         localStorage.setItem("token", token);
+        localStorage.setItem("userSetting", JSON.stringify(userSetting));
         localStorage.setItem("user", JSON.stringify(user));
         dispatch({
           type: loginConstant.LOGIN_SUCCESS,
           payload: {
             token,
             user,
+          },
+        });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTING_SUCCESS,
+          payload: {
+            userId: userSetting.userId,
+            chat: userSetting.chat[0],
+            product: userSetting.product[0],
+            category: userSetting.category[0],
           },
         });
       }
@@ -43,12 +58,22 @@ export const userIsLogin = () => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user"));
-    if (token && user) {
+    const userSetting = JSON.parse(localStorage.getItem("userSetting"));
+    if (token && user && userSetting) {
       dispatch({
         type: loginConstant.LOGIN_SUCCESS,
         payload: {
           user,
           token,
+        },
+      });
+      dispatch({
+        type: userSettingConstant.GETUSERSETTING_SUCCESS,
+        payload: {
+          userId: userSetting.userId,
+          chat: userSetting.chat[0],
+          product: userSetting.product[0],
+          category: userSetting.category[0],
         },
       });
     }

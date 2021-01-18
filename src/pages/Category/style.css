@@ -440,6 +440,10 @@
     margin-left: 0px;
     margin-top: 20px;
   }
+  .category-content-right-top {
+    overflow-x: scroll;
+    /* padding-left: 200px; */
+  }
 }
 
 @media (max-width: 500px) {
@@ -449,11 +453,6 @@
   .category-content-left-bottom {
     flex-direction: column;
     padding: 20px 0 10px;
-  }
-
-  .category-content-right-top {
-    overflow-x: scroll;
-    /* padding-left: 200px; */
   }
   .category-table-data-remove {
     flex-direction: column;

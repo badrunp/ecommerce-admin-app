@@ -39,6 +39,7 @@ import { CountUp } from "use-count-up";
 function Product(props) {
   const products = useSelector((state) => state.products);
   const category = useSelector((state) => state.category);
+  const userSetting = useSelector((state) => state.userSetting);
   const { darkMode } = useSelector((state) => state.darkMode);
   const dispatch = useDispatch();
 
@@ -666,105 +667,165 @@ function Product(props) {
         <div className="product-main">
           <div className="product-main-wrapper ">
             <div className="product-main-left">
-              <div
-                className={
-                  darkMode
-                    ? "product-main-left-quantity bg-content-dark-mode"
-                    : "product-main-left-quantity"
-                }
-              >
-                <div className="product-main-left-count">
-                  <div
-                    className={
-                      darkMode
-                        ? "product-count-circle border-color-orange-dark-mode"
-                        : "product-count-circle"
-                    }
-                  >
-                    <h1 className={darkMode ? "text-color-dark-mode" : ""}>
-                      <CountUp
-                        isCounting
-                        end={products.productsLength && products.productsLength}
-                        duration={3.3}
-                      />
-                    </h1>
-                  </div>
-                  <h4 className={darkMode ? "text-color-dark-mode" : ""}>
-                    Jumlah Produk
-                  </h4>
-                </div>
-                <div className="product-count-top">
-                  <BarChart width={150} height={70} data={data}>
-                    <Bar dataKey="uv" fill={darkMode ? "white" : "#0F66BD"} />
-                    <Tooltip />
-                  </BarChart>
-                  <h4 className={darkMode ? "text-color-dark-mode" : ""}>
-                    Produk Terlaris
-                  </h4>
-                </div>
-              </div>
-
-              {productsPriceMax(products.products).length > 0 ? (
+              {userSetting.product && userSetting.product.productQuantity ? (
                 <div
                   className={
                     darkMode
-                      ? "product-main-left-grapich bg-content-dark-mode"
-                      : "product-main-left-grapich"
+                      ? "product-main-left-quantity bg-content-dark-mode"
+                      : "product-main-left-quantity"
                   }
                 >
-                  <h4
-                    className="grapich-title"
-                    style={{ marginBottom: "15px" }}
-                  >
-                    Harga Produk Termahal
-                  </h4>
-                  <LineChart
-                    className="grapich"
-                    width={530}
-                    height={250}
-                    data={topPriceProduct}
-                    margin={{
-                      top: 5,
-                      right: 40,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="Nama" />
-                    <YAxis />
-                    <Tooltip />
-
-                    <Line
-                      type="monotone"
-                      dataKey="Harga"
-                      stroke={darkMode ? "#e16428" : "#0F66BD"}
-                    />
-                  </LineChart>
+                  <div className="product-main-left-count">
+                    <div
+                      className={
+                        darkMode
+                          ? "product-count-circle border-color-orange-dark-mode"
+                          : "product-count-circle"
+                      }
+                    >
+                      <h1 className={darkMode ? "text-color-dark-mode" : ""}>
+                        <CountUp
+                          isCounting
+                          end={
+                            products.productsLength && products.productsLength
+                          }
+                          duration={3.3}
+                        />
+                      </h1>
+                    </div>
+                    <h4 className={darkMode ? "text-color-dark-mode" : ""}>
+                      Jumlah Produk
+                    </h4>
+                  </div>
+                  <div className="product-count-top">
+                    <BarChart width={150} height={70} data={data}>
+                      <Bar dataKey="uv" fill={darkMode ? "white" : "#0F66BD"} />
+                      <Tooltip />
+                    </BarChart>
+                    <h4 className={darkMode ? "text-color-dark-mode" : ""}>
+                      Produk Terlaris
+                    </h4>
+                  </div>
                 </div>
               ) : null}
-            </div>
-            <div className="product-main-right">
-              <div
-                className={
-                  darkMode
-                    ? "product-main-right-quatity-max bg-content-dark-mode"
-                    : "product-main-right-quatity-max"
-                }
-              >
-                {productsTotalMax(products.products).length > 0 ? (
-                  <>
+
+              {userSetting.product && userSetting.product.productTopQuantity ? (
+                productsPriceMax(products.products).length > 0 ? (
+                  <div
+                    className={
+                      darkMode
+                        ? "product-main-left-grapich bg-content-dark-mode"
+                        : "product-main-left-grapich"
+                    }
+                  >
                     <h4
                       className="grapich-title"
                       style={{ marginBottom: "15px" }}
                     >
-                      Jumlah Produk Terbanyak
+                      Harga Produk Termahal
+                    </h4>
+                    <LineChart
+                      className="grapich"
+                      width={530}
+                      height={250}
+                      data={topPriceProduct}
+                      margin={{
+                        top: 5,
+                        right: 40,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="Nama" />
+                      <YAxis />
+                      <Tooltip />
+
+                      <Line
+                        type="monotone"
+                        dataKey="Harga"
+                        stroke={darkMode ? "#e16428" : "#0F66BD"}
+                      />
+                    </LineChart>
+                  </div>
+                ) : null
+              ) : null}
+            </div>
+
+            <div className="product-main-right">
+              {userSetting.product && userSetting.product.productTop ? (
+                <div
+                  className={
+                    darkMode
+                      ? "product-main-right-quatity-max bg-content-dark-mode"
+                      : "product-main-right-quatity-max"
+                  }
+                >
+                  {productsTotalMax(products.products).length > 0 ? (
+                    <>
+                      <h4
+                        className="grapich-title"
+                        style={{ marginBottom: "15px" }}
+                      >
+                        Jumlah Produk Terbanyak
+                      </h4>
+                      <BarChart
+                        className="grapich"
+                        width={500}
+                        height={250}
+                        data={topQtyProduct}
+                        margin={{
+                          top: 5,
+                          right: 30,
+                          left: 20,
+                          bottom: 5,
+                        }}
+                        barSize={20}
+                      >
+                        <XAxis
+                          dataKey="Nama"
+                          scale="point"
+                          padding={{ left: 10, right: 10 }}
+                        />
+                        <YAxis />
+                        <Tooltip />
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <Bar
+                          dataKey="Jumlah"
+                          fill={darkMode ? "#e16428" : "#0F66BD"}
+                          background={{ fill: "#eee" }}
+                        />
+                      </BarChart>
+                    </>
+                  ) : (
+                    <Alert style={{ width: "100%" }} variant="danger">
+                      <VscWarning className="message-validasi-icon" /> Produk
+                      Kosong
+                    </Alert>
+                  )}
+                </div>
+              ) : null}
+
+              {userSetting.product && userSetting.product.productLowQuantity ? (
+                productsTotalLow(products.products).length > 0 ? (
+                  <div
+                    className={
+                      darkMode
+                        ? "product-main-right-quatity-low bg-content-dark-mode"
+                        : "product-main-right-quatity-low"
+                    }
+                  >
+                    <h4
+                      className="grapich-title"
+                      style={{ marginBottom: "15px" }}
+                    >
+                      Produk Hampir Habis
                     </h4>
                     <BarChart
                       className="grapich"
                       width={500}
                       height={250}
-                      data={topQtyProduct}
+                      data={lowQtyProduct}
                       margin={{
                         top: 5,
                         right: 30,
@@ -787,143 +848,98 @@ function Product(props) {
                         background={{ fill: "#eee" }}
                       />
                     </BarChart>
-                  </>
-                ) : (
-                  <Alert style={{ width: "100%" }} variant="danger">
-                    <VscWarning className="message-validasi-icon" /> Produk
-                    Kosong
-                  </Alert>
-                )}
-              </div>
-
-              {productsTotalLow(products.products).length > 0 ? (
-                <div
-                  className={
-                    darkMode
-                      ? "product-main-right-quatity-low bg-content-dark-mode"
-                      : "product-main-right-quatity-low"
-                  }
-                >
-                  <h4
-                    className="grapich-title"
-                    style={{ marginBottom: "15px" }}
-                  >
-                    Produk Hampir Habis
-                  </h4>
-                  <BarChart
-                    className="grapich"
-                    width={500}
-                    height={250}
-                    data={lowQtyProduct}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                    }}
-                    barSize={20}
-                  >
-                    <XAxis
-                      dataKey="Nama"
-                      scale="point"
-                      padding={{ left: 10, right: 10 }}
-                    />
-                    <YAxis />
-                    <Tooltip />
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <Bar
-                      dataKey="Jumlah"
-                      fill={darkMode ? "#e16428" : "#0F66BD"}
-                      background={{ fill: "#eee" }}
-                    />
-                  </BarChart>
-                </div>
+                  </div>
+                ) : null
               ) : null}
             </div>
           </div>
         </div>
 
-        <div
-          className={
-            darkMode
-              ? "product-content-history bg-content-dark-mode"
-              : "product-content-history"
-          }
-        >
-          <h3 className="grapich-title">History</h3>
-          <Table
-            striped
-            bordered
-            hover
-            size="sm"
-            responsive="md"
-            className="table-data"
-          >
-            <thead>
-              <tr className="bg-dark text-white">
-                <th>No.</th>
-                <th>Oleh</th>
-                <th>Nama Produk</th>
-                <th>Status</th>
-                <th>Waktu</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.productHistory &&
-                products.productHistory.map((item, i) => {
-                  if (item.status === "Diubah") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#055e68" : "#20c997"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  } else if (item.status === "Ditambahkan") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#22267b" : "#007bff"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  } else if (item.status === "Dihapus") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#84142d" : "#dc3545"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  }
-                })}
-            </tbody>
-          </Table>
-        </div>
+        {userSetting.product && userSetting.product.productHistory ? (
+          products.productHistory.length > 0 ? (
+            <div
+              className={
+                darkMode
+                  ? "product-content-history bg-content-dark-mode"
+                  : "product-content-history"
+              }
+            >
+              <h3 className="grapich-title">History</h3>
+              <Table
+                striped
+                bordered
+                hover
+                size="sm"
+                responsive="md"
+                className="table-data"
+              >
+                <thead>
+                  <tr className="bg-dark text-white">
+                    <th>No.</th>
+                    <th>Oleh</th>
+                    <th>Nama Produk</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.productHistory &&
+                    products.productHistory.map((item, i) => {
+                      if (item.status === "Diubah") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#055e68" : "#20c997"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      } else if (item.status === "Ditambahkan") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#22267b" : "#007bff"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      } else if (item.status === "Dihapus") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#84142d" : "#dc3545"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
+              </Table>
+            </div>
+          ) : null
+        ) : null}
       </div>
 
       {renderModalDeleteProduct()}
