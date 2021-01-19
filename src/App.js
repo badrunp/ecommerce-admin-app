@@ -45,8 +45,10 @@ function App() {
   }, [auth]);
 
   useEffect(() => {
-    dispatch(getChat());
-  }, []);
+    if (auth.authenticate) {
+      dispatch(getChat());
+    }
+  }, [auth.authenticate]);
 
   useEffect(() => {
     let server = baseUrl;
