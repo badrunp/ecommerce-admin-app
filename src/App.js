@@ -56,12 +56,15 @@ function App() {
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
       randomizationFactor: 0.5,
-      // transports: ["polling", "websocket", "flashsocket"],
+      transports: ["polling", "websocket", "flashsocket"],
+      withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd",
+      },
       secure: true,
       timeout: 50000,
       pingTimeout: 50000,
       autoConnect: true,
-      rejectUnauthorized: false,
       auth: {
         token: localStorage.getItem("token")
           ? localStorage.getItem("token")
