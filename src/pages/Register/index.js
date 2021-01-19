@@ -31,11 +31,15 @@ function Register(props) {
     if (!user.loading) {
       dispatch(register(userForm));
     }
-
-    setNama("");
-    setEmail("");
-    setPassword("");
   };
+
+  useEffect(() => {
+    if (user.message) {
+      setNama("");
+      setEmail("");
+      setPassword("");
+    }
+  }, [user]);
 
   useEffect(() => {
     if (user.message) {

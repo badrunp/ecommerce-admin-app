@@ -41,7 +41,6 @@ export const updateUserSettingProductQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
-    console.log(bool);
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTQUANTITY,
@@ -53,7 +52,6 @@ export const updateUserSettingProductQuantity = (bool) => {
         "/usersetting/updateproductquantity",
         newBool
       );
-      console.log(res);
       if (res.status === 200) {
         const { userSetting } = res.data;
         localStorage.setItem("userSetting", JSON.stringify(userSetting));
@@ -77,7 +75,6 @@ export const updateUserSettingProductTop = (bool) => {
     const newBool = {
       bool: bool,
     };
-    console.log(bool);
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTTOP,
@@ -109,7 +106,6 @@ export const updateUserSettingProductLowQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
-    console.log(bool);
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTLOWQUANTITY,
@@ -144,7 +140,6 @@ export const updateUserSettingProductTopQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
-    console.log(bool);
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTTOPQUANTITY,
@@ -154,6 +149,114 @@ export const updateUserSettingProductTopQuantity = (bool) => {
       });
       const res = await axiosApi.post(
         "/usersetting/updateproducttopquantity",
+        newBool
+      );
+      if (res.status === 200) {
+        const { userSetting } = res.data;
+        localStorage.setItem("userSetting", JSON.stringify(userSetting));
+        dispatch({
+          type: userSettingConstant.GETUSERSETTING_SUCCESS,
+          payload: {
+            userId: userSetting.userId,
+            chat: userSetting.chat[0],
+            product: userSetting.product[0],
+            category: userSetting.category[0],
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const updateUserSettingCategoryQuantity = (bool) => {
+  return async (dispatch) => {
+    const newBool = {
+      bool: bool,
+    };
+
+    try {
+      dispatch({
+        type: userSettingConstant.USERSETTING_CATEGORYQUANTITY,
+        payload: {
+          categoryQuantity: bool,
+        },
+      });
+      const res = await axiosApi.post(
+        "/usersetting/updatecategoryquantity",
+        newBool
+      );
+      if (res.status === 200) {
+        const { userSetting } = res.data;
+        localStorage.setItem("userSetting", JSON.stringify(userSetting));
+        dispatch({
+          type: userSettingConstant.GETUSERSETTING_SUCCESS,
+          payload: {
+            userId: userSetting.userId,
+            chat: userSetting.chat[0],
+            product: userSetting.product[0],
+            category: userSetting.category[0],
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const updateUserSettingCategoryHistory = (bool) => {
+  return async (dispatch) => {
+    const newBool = {
+      bool: bool,
+    };
+
+    try {
+      dispatch({
+        type: userSettingConstant.USERSETTING_CATEGORYHISTORY,
+        payload: {
+          categoryHistory: bool,
+        },
+      });
+      const res = await axiosApi.post(
+        "/usersetting/updatecategoryhistory",
+        newBool
+      );
+      if (res.status === 200) {
+        const { userSetting } = res.data;
+        localStorage.setItem("userSetting", JSON.stringify(userSetting));
+        dispatch({
+          type: userSettingConstant.GETUSERSETTING_SUCCESS,
+          payload: {
+            userId: userSetting.userId,
+            chat: userSetting.chat[0],
+            product: userSetting.product[0],
+            category: userSetting.category[0],
+          },
+        });
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+};
+
+export const updateUserSettingCategoryTopQuantity = (bool) => {
+  return async (dispatch) => {
+    const newBool = {
+      bool: bool,
+    };
+
+    try {
+      dispatch({
+        type: userSettingConstant.USERSETTING_CATEGORYTOPQUANTITY,
+        payload: {
+          categoryTopQuantity: bool,
+        },
+      });
+      const res = await axiosApi.post(
+        "/usersetting/updatecategorytopquantity",
         newBool
       );
       if (res.status === 200) {

@@ -56,7 +56,7 @@ function App() {
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
       randomizationFactor: 0.5,
-      transports: ["polling", "websocket", "flashsocket"],
+      // transports: ["polling", "websocket", "flashsocket"],
       secure: true,
       timeout: 50000,
       pingTimeout: 50000,

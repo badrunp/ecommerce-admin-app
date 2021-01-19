@@ -992,87 +992,89 @@ function Category() {
           </div>
         </div>
 
-        <div
-          className={
-            darkMode
-              ? "category-content-left-history bg-content-dark-mode"
-              : "category-content-left-history"
-          }
-        >
-          <h3 className="grapich-title">History</h3>
-          <Table
-            striped
-            bordered
-            hover
-            size="sm"
-            responsive="md"
-            className="table-data"
+        {category.categoryHistory.length > 0 ? (
+          <div
+            className={
+              darkMode
+                ? "category-content-left-history bg-content-dark-mode"
+                : "category-content-left-history"
+            }
           >
-            <thead>
-              <tr className="bg-dark text-white">
-                <th>No.</th>
-                <th>Oleh</th>
-                <th>Nama Kategori</th>
-                <th>Status</th>
-                <th>Waktu</th>
-              </tr>
-            </thead>
-            <tbody>
-              {category.categoryHistory &&
-                category.categoryHistory.map((item, i) => {
-                  if (item.status === "Diubah") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#055e68" : "#20c997"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  } else if (item.status === "Ditambahkan") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#22267b" : "#007bff"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  } else if (item.status === "Dihapus") {
-                    return (
-                      <tr
-                        key={item._id}
-                        className="text-white"
-                        style={{
-                          background: `${darkMode ? "#84142d" : "#dc3545"}`,
-                        }}
-                      >
-                        <td>{i + 1}</td>
-                        <td>{item.author.fullName}</td>
-                        <td>{item.name}</td>
-                        <td>{item.status}</td>
-                        <td>{item.time}</td>
-                      </tr>
-                    );
-                  }
-                })}
-            </tbody>
-          </Table>
-        </div>
+            <h3 className="grapich-title">History</h3>
+            <Table
+              striped
+              bordered
+              hover
+              size="sm"
+              responsive="md"
+              className="table-data"
+            >
+              <thead>
+                <tr className="bg-dark text-white">
+                  <th>No.</th>
+                  <th>Oleh</th>
+                  <th>Nama Kategori</th>
+                  <th>Status</th>
+                  <th>Waktu</th>
+                </tr>
+              </thead>
+              <tbody>
+                {category.categoryHistory &&
+                  category.categoryHistory.map((item, i) => {
+                    if (item.status === "Diubah") {
+                      return (
+                        <tr
+                          key={item._id}
+                          className="text-white"
+                          style={{
+                            background: `${darkMode ? "#055e68" : "#20c997"}`,
+                          }}
+                        >
+                          <td>{i + 1}</td>
+                          <td>{item.author.fullName}</td>
+                          <td>{item.name}</td>
+                          <td>{item.status}</td>
+                          <td>{item.time}</td>
+                        </tr>
+                      );
+                    } else if (item.status === "Ditambahkan") {
+                      return (
+                        <tr
+                          key={item._id}
+                          className="text-white"
+                          style={{
+                            background: `${darkMode ? "#22267b" : "#007bff"}`,
+                          }}
+                        >
+                          <td>{i + 1}</td>
+                          <td>{item.author.fullName}</td>
+                          <td>{item.name}</td>
+                          <td>{item.status}</td>
+                          <td>{item.time}</td>
+                        </tr>
+                      );
+                    } else if (item.status === "Dihapus") {
+                      return (
+                        <tr
+                          key={item._id}
+                          className="text-white"
+                          style={{
+                            background: `${darkMode ? "#84142d" : "#dc3545"}`,
+                          }}
+                        >
+                          <td>{i + 1}</td>
+                          <td>{item.author.fullName}</td>
+                          <td>{item.name}</td>
+                          <td>{item.status}</td>
+                          <td>{item.time}</td>
+                        </tr>
+                      );
+                    }
+                  })}
+              </tbody>
+            </Table>
+          </div>
+        ) : null}
       </div>
 
       {renderModalAddCategory()}

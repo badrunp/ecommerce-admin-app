@@ -16,6 +16,9 @@ import {
   updateUserSettingProductTop,
   updateUserSettingProductLowQuantity,
   updateUserSettingProductTopQuantity,
+  updateUserSettingCategoryQuantity,
+  updateUserSettingCategoryHistory,
+  updateUserSettingCategoryTopQuantity,
 } from "../../actions";
 import { ImSpinner9 } from "react-icons/im";
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
@@ -104,6 +107,25 @@ function Navbar() {
     setCheckedProductTopQuantity(!checkedProductTopQuantity);
     dispatch(updateUserSettingProductTopQuantity(!checkedProductTopQuantity));
   };
+
+  const handleChangeCategoryQuantity = () => {
+    dispatch(
+      updateUserSettingCategoryQuantity(!userSetting.category.categoryQuantity)
+    );
+  };
+  const handleChangeCategoryTopQuantity = () => {
+    dispatch(
+      updateUserSettingCategoryTopQuantity(
+        !userSetting.category.categoryTopQuantity
+      )
+    );
+  };
+  const handleChangeCategoryHistory = () => {
+    dispatch(
+      updateUserSettingCategoryHistory(!userSetting.category.categoryHistory)
+    );
+  };
+
   const renderShowSetting = () => {
     return (
       <>
@@ -356,8 +378,11 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleChangeCategoryHistory}
+                        checked={
+                          userSetting.category &&
+                          userSetting.category.categoryHistory
+                        }
                       />
                       <label
                         className="form-check-label"
@@ -379,8 +404,11 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleChangeCategoryQuantity}
+                        checked={
+                          userSetting.category &&
+                          userSetting.category.categoryQuantity
+                        }
                       />
                       <label
                         className="form-check-label"
@@ -402,8 +430,11 @@ function Navbar() {
                           height: "15px",
                           cursor: "pointer",
                         }}
-                        onChange={hanleCheckedChat}
-                        checked={checkedChat}
+                        onChange={handleChangeCategoryTopQuantity}
+                        checked={
+                          userSetting.category &&
+                          userSetting.category.categoryTopQuantity
+                        }
                       />
                       <label
                         className="form-check-label"
