@@ -2,13 +2,10 @@ import { chatConstant } from "../configs/constant";
 import axiosApi from "../helpers/axios";
 import store from "../store";
 
-const getChat = (id) => {
+const getChat = () => {
   return async (dispatch) => {
     try {
-      // const userId = {
-      //     uid: id
-      // }
-      const res = await axiosApi.post("/chat/getchat");
+      const res = await axiosApi.get("/chat/getchat");
       if (res.status == 200) {
         dispatch({
           type: chatConstant.GETALLCHAT,
