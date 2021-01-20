@@ -20,25 +20,6 @@ function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   let server = baseUrl;
-  //   if (auth.authenticate) {
-  //     let socket = io(server);
-
-  //     socket.on("connect", () => {
-  //       socket.emit("joinRoom", {
-  //         name: auth.user.fullName,
-  //         room: "global",
-  //         userId: auth.user._id,
-  //       });
-
-  //       socket.on("usersList", ({ users }) => {
-  //         dispatch(getUserOnline(users));
-  //       });
-  //     });
-  //   }
-  // }, [auth]);
-
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(userIsLogin());
@@ -64,6 +45,23 @@ function App() {
     dispatch(checkDarkMode());
   }, [checkDarkMode]);
 
+  // useEffect(() => {
+  //   let server = baseUrl;
+
+  //   let socket = io(server);
+
+  //   socket.on("connect", () => {
+  //     socket.emit("joinRoom", {
+  //       name: auth.user.fullName,
+  //       room: "global",
+  //       userId: auth.user._id,
+  //     });
+
+  //     socket.on("usersList", ({ users }) => {
+  //       dispatch(getUserOnline(users));
+  //     });
+  //   });
+  // }, [auth]);
   return (
     <>
       <Routes />
