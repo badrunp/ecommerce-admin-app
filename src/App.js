@@ -51,12 +51,6 @@ function App() {
   //   let socket = io(server);
 
   //   socket.on("connect", () => {
-  //     socket.emit("joinRoom", {
-  //       name: auth.user.fullName,
-  //       room: "global",
-  //       userId: auth.user._id,
-  //     });
-
   //     socket.on("usersList", ({ users }) => {
   //       dispatch(getUserOnline(users));
   //     });
