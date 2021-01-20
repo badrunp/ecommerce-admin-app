@@ -23,25 +23,7 @@ function App() {
   useEffect(() => {
     // let server = baseUrl;
     if (auth.authenticate) {
-      let socket = io(baseUrl, {
-        reconnection: true,
-        reconnectionAttempts: Infinity,
-        reconnectionDelay: 1000,
-        reconnectionDelayMax: 5000,
-        randomizationFactor: 0.5,
-        rememberUpgrade: true,
-        transports: ["websocket"],
-        secure: true,
-        timeout: 50000,
-        pingTimeout: 50000,
-        autoConnect: true,
-        rejectUnauthorized: false,
-        auth: {
-          token: localStorage.getItem("token")
-            ? localStorage.getItem("token")
-            : "",
-        },
-      });
+      let socket = io(baseUrl);
 
       socket.on("connect", () => {
         socket.emit("joinRoom", {
