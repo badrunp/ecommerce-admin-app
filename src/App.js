@@ -51,8 +51,8 @@ function App() {
   }, [auth.authenticate]);
 
   useEffect(() => {
-    let server = baseUrl;
-    let socket = io(server, {
+    // let server = baseUrl;
+    let socket = io(baseUrl, {
       reconnection: true,
       reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
