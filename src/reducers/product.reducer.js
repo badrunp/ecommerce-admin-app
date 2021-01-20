@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: false,
-        load: true,
+        load: false,
         products: action.payload.products,
         productsS: action.payload.productsS,
         totalData: action.payload.totalData,

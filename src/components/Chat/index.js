@@ -27,7 +27,37 @@ class Chat extends React.Component {
   componentDidMount() {
     let server = baseUrl;
 
-    this.socket = io(server);
+    this.socket = io(server, {
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      randomizationFactor: 0.5,
+      rememberUpgrade: true,
+      transports: ["polling"],
+      secure: true,
+      timeout: 50000,
+      pingTimeout: 50000,
+      autoConnect: true,
+      rejectUnauthorized: false,
+      auth: {
+        token: localStorage.getItem("token")
+          ? localStorage.getItem("token")
+          : "",
+      },
+    });
+
+    if (this.props.authenticate) {
+      this.socket.emit("joinRoom", {
+        name: this.props.auth.user.fullName,
+        room: "global",
+        userId: this.props.auth.user._id,
+      });
+
+      this.socket.on("usersList", ({ users }) => {
+        this.props.dispatch(getUserOnline(users));
+      });
+    }
 
     if (this.state.message.length === 0) {
       this.setState({
@@ -38,8 +68,6 @@ class Chat extends React.Component {
       if (msg[0].userId._id != this.props.auth.user._id) {
         this.props.dispatch(addNotificationChats(this.props.auth.user._id));
       }
-      // console.log(msg);
-      // console.log(this.props.auth.user._id);
       if (this.state.message === "") {
         this.setState({
           outputMsg: msg,
@@ -80,9 +108,6 @@ class Chat extends React.Component {
     });
 
     if (checkCount.length === 0) {
-      // let server = baseUrl;
-      // let socket = io(server);
-
       this.socket.emit("joinRoom", {
         name: this.props.auth.user.fullName,
         room: "global",

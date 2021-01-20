@@ -6,6 +6,7 @@ const getChat = () => {
   return async (dispatch) => {
     try {
       const res = await axiosApi.get("/chat/getchat");
+      console.log(res);
       if (res.status == 200) {
         dispatch({
           type: chatConstant.GETALLCHAT,

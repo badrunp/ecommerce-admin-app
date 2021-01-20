@@ -1,7 +1,13 @@
 import { chatConstant } from "../configs/constant";
 
 const initialState = {
-  chats: [],
+  chats: [
+    {
+      userId: "600677ebfdef35001717653e",
+      message: "Hallo",
+      time: "12:12",
+    },
+  ],
   showChat: false,
   closeChating: false,
   is_message: false,

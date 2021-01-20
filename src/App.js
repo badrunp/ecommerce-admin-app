@@ -20,54 +20,24 @@ function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // let server = baseUrl;
-    console.log(baseUrl);
-    if (auth.authenticate) {
-      let socket = io(baseUrl, {
-        reconnection: true,
-        reconnectionAttempts: Infinity,
-        reconnectionDelay: 1000,
-        reconnectionDelayMax: 5000,
-        randomizationFactor: 0.5,
-        rememberUpgrade: true,
-        transports: ["polling"],
-        secure: true,
-        timeout: 50000,
-        pingTimeout: 50000,
-        autoConnect: true,
-        rejectUnauthorized: false,
-        auth: {
-          token: localStorage.getItem("token")
-            ? localStorage.getItem("token")
-            : "",
-        },
-      });
+  // useEffect(() => {
+  //   let server = baseUrl;
+  //   if (auth.authenticate) {
+  //     let socket = io(server);
 
-      socket.on("connect", () => {
-        socket.emit("joinRoom", {
-          name: auth.user.fullName,
-          room: "global",
-          userId: auth.user._id,
-        });
+  //     socket.on("connect", () => {
+  //       socket.emit("joinRoom", {
+  //         name: auth.user.fullName,
+  //         room: "global",
+  //         userId: auth.user._id,
+  //       });
 
-        let count = 0;
-        setInterval(() => {
-          socket.volatile.emit("ping", ++count);
-        }, 1000);
-
-        socket.on("usersList", ({ users }) => {
-          dispatch(getUserOnline(users));
-        });
-      });
-
-      socket.on("connect_error", () => {
-        setTimeout(() => {
-          socket.connect();
-        }, 1000);
-      });
-    }
-  }, [auth]);
+  //       socket.on("usersList", ({ users }) => {
+  //         dispatch(getUserOnline(users));
+  //       });
+  //     });
+  //   }
+  // }, [auth]);
 
   useEffect(() => {
     if (!auth.authenticate) {
