@@ -47,17 +47,15 @@ class Chat extends React.Component {
       },
     });
 
-    if (this.props.authenticate) {
-      this.socket.emit("joinRoom", {
-        name: this.props.auth.user.fullName,
-        room: "global",
-        userId: this.props.auth.user._id,
-      });
+    this.socket.emit("joinRoom", {
+      name: this.props.auth.user.fullName,
+      room: "global",
+      userId: this.props.auth.user._id,
+    });
 
-      this.socket.on("usersList", ({ users }) => {
-        this.props.dispatch(getUserOnline(users));
-      });
-    }
+    this.socket.on("usersList", ({ users }) => {
+      this.props.dispatch(getUserOnline(users));
+    });
 
     if (this.state.message.length === 0) {
       this.setState({
