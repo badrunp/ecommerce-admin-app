@@ -18,8 +18,15 @@ function Layout(props) {
       <Navbar />
 
       {products.load && products.products.length === 0 ? (
-        <div className="loading-2">
-          <ImSpinner9 className="loading-2-icon" />
+        <div className="layout-loading-container">
+          <div className="loadingio-spinner-dual-ball-qo0vozo5pwc">
+            <div className="ldio-ht0g6nnvd0o">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          Mengamil semua data....
         </div>
       ) : (
         <div

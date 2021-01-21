@@ -126,7 +126,6 @@ p.render-image-name {
   width: 100%;
   padding: 15px 15px 0 95px;
   position: relative;
-  transition: all 0.2s ease-in-out;
   top: 60px;
 }
 
@@ -299,7 +298,6 @@ p.render-image-name {
 .bg-dark-mode {
   background-color: #121212 !important ;
   color: white !important;
-  transition: all 0.2s !important;
 }
 
 .bg-content-dark-mode {

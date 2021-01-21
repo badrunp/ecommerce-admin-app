@@ -46,6 +46,16 @@ function App() {
   }, [checkDarkMode]);
 
   // useEffect(() => {
+  //   window.addEventListener("beforeunload", alertUser);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", alertUser);
+  //   };
+  // }, []);
+  // const alertUser = (e) => {
+  //   console.log("test");
+  // };
+
+  // useEffect(() => {
   //   let server = baseUrl;
 
   //   let socket = io(server);

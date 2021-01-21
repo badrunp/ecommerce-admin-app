@@ -4,11 +4,17 @@ import { Redirect, Route } from "react-router-dom";
 import "./style.css";
 
 function PrivateComp({ component: Component, ...rest }) {
-  const [spinner, setSpinner] = useState(true);
+  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setSpinner(false), 1000);
+    window.onbeforeunload = (e) => {
+      setSpinner(true);
+    };
   }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => setSpinner(false), 2000);
+  // }, []);
   return (
     <Route
       {...rest}
@@ -21,7 +27,6 @@ function PrivateComp({ component: Component, ...rest }) {
               <>
                 <div className="loader-main">
                   <div className="lds-dual-ring"></div>
-                  Memuat....
                 </div>
               </>
             );
