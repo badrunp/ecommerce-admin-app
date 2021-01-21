@@ -104,16 +104,18 @@ function Category() {
   }, [category]);
 
   useEffect(() => {
-    const handleResize = _debounce(
-      () => setResize(containerRef.current.offsetWidth),
-      100
-    );
+    if (containerRef.current) {
+      const handleResize = _debounce(
+        () => setResize(containerRef.current.offsetWidth),
+        100
+      );
 
-    window.addEventListener("resize", handleResize);
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, [setResize, resize]);
 
   const renderCategoryList = (categories) => {

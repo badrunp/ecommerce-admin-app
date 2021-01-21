@@ -135,28 +135,28 @@ p.render-image-name {
 
 @media (max-width: 576px) {
   .layout-container {
-    padding: 10px;
+    padding: 0px 0 10px 0;
   }
   .layout-container.active {
-    padding: 10px;
+    padding: 0px 0 10px 0;
   }
 }
 
 @media (min-width: 577px) {
   .layout-container {
-    padding: 10px 10px 10px 90px;
+    padding: 0px 0px 10px 80px;
   }
   .layout-container.active {
-    padding: 10px 10px 10px 90px;
+    padding: 0px 0px 10px 80px;
   }
 }
 
 @media (min-width: 993px) {
   .layout-container {
-    padding: 10px 10px 10px 90px;
+    padding: 0px 0px 10px 80px;
   }
   .layout-container.active {
-    padding: 10px 10px 10px 270px;
+    padding: 0px 0px 10px 260px;
   }
 }
 
