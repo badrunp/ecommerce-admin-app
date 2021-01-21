@@ -601,7 +601,14 @@ function Navbar() {
     <>
       {auth.loading ? (
         <div className="loading-2">
-          <ImSpinner9 className="loading-2-icon" />
+          <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+          </div>
         </div>
       ) : null}
       <div
