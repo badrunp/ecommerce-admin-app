@@ -127,6 +127,7 @@ p.render-image-name {
   padding: 15px 15px 0 95px;
   position: relative;
   top: 60px;
+  transition: padding 0.2s ease-in-out;
 }
 
 .layout-container.active {
