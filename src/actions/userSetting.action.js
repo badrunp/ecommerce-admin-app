@@ -6,6 +6,9 @@ export const updateUserSettingHistoryProduct = (bool) => {
     const newBool = {
       bool: bool.toString(),
     };
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGHISTORYPRODUCT_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_HISTTORYPRODUCT,
@@ -29,6 +32,9 @@ export const updateUserSettingHistoryProduct = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGHISTORYPRODUCT_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -41,6 +47,9 @@ export const updateUserSettingProductQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGPRODUCTQUANTITY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTQUANTITY,
@@ -64,6 +73,9 @@ export const updateUserSettingProductQuantity = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGPRODUCTQUANTITY_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -75,6 +87,9 @@ export const updateUserSettingProductTop = (bool) => {
     const newBool = {
       bool: bool,
     };
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGPRODUCTTOP_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTTOP,
@@ -95,6 +110,9 @@ export const updateUserSettingProductTop = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGPRODUCTTOP_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -106,6 +124,9 @@ export const updateUserSettingProductLowQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGPRODUCTLOWQUANTITY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTLOWQUANTITY,
@@ -129,6 +150,9 @@ export const updateUserSettingProductLowQuantity = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGPRODUCTLOWQUANTITY_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -140,6 +164,9 @@ export const updateUserSettingProductTopQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGPRODUCTTOPQUANTITY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_PRODUCTTOPQUANTITY,
@@ -163,6 +190,9 @@ export const updateUserSettingProductTopQuantity = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGPRODUCTTOPQUANTITY_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -175,7 +205,9 @@ export const updateUserSettingCategoryQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
-
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGCATEGORYQUANTITY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_CATEGORYQUANTITY,
@@ -199,6 +231,9 @@ export const updateUserSettingCategoryQuantity = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGCATEGORYQUANTITY_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -211,7 +246,9 @@ export const updateUserSettingCategoryHistory = (bool) => {
     const newBool = {
       bool: bool,
     };
-
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGCATEGORYHISTORY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_CATEGORYHISTORY,
@@ -235,6 +272,9 @@ export const updateUserSettingCategoryHistory = (bool) => {
             category: userSetting.category[0],
           },
         });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGCATEGORYHISTORY_SUCCESS,
+        });
       }
     } catch (error) {
       console.log(error.response);
@@ -247,7 +287,9 @@ export const updateUserSettingCategoryTopQuantity = (bool) => {
     const newBool = {
       bool: bool,
     };
-
+    dispatch({
+      type: userSettingConstant.GETUSERSETTINGCATEGORYTOPQUANTITY_REQUEST,
+    });
     try {
       dispatch({
         type: userSettingConstant.USERSETTING_CATEGORYTOPQUANTITY,
@@ -270,6 +312,9 @@ export const updateUserSettingCategoryTopQuantity = (bool) => {
             product: userSetting.product[0],
             category: userSetting.category[0],
           },
+        });
+        dispatch({
+          type: userSettingConstant.GETUSERSETTINGCATEGORYTOPQUANTITY_SUCCESS,
         });
       }
     } catch (error) {

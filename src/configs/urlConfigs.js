@@ -3,8 +3,8 @@ const urlPath =
     ? "http://localhost:4000"
     : "https://duosdev-rest-server.herokuapp.com";
 
-export const baseUrl = urlPath;
+export const baseUrl = "https://duosdev-rest-server.herokuapp.com";
 
 export const baseUrlImage = (image) => {
-  return `${urlPath}/${image}`;
+  return `${baseUrl}/${image}`;
 };

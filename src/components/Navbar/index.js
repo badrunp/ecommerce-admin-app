@@ -86,44 +86,69 @@ function Navbar() {
   };
 
   const hanleCheckedProductHistory = (e) => {
-    setCheckedProductHistory(!checkedProductHistory);
-    dispatch(updateUserSettingHistoryProduct(!checkedProductHistory));
+    if (!userSetting.loadProductHistory) {
+      dispatch(
+        updateUserSettingHistoryProduct(!userSetting.product.productHistory)
+      );
+    }
   };
 
   const handleCheckedProductQuantity = (e) => {
-    setCheckedProductQuantity(!checkedProductQuantity);
-    dispatch(updateUserSettingProductQuantity(!checkedProductQuantity));
+    if (!userSetting.loadProductQuantity) {
+      dispatch(
+        updateUserSettingProductQuantity(!userSetting.product.productQuantity)
+      );
+    }
   };
 
   const handleCheckedProductTop = (e) => {
-    setCheckedProductTop(!checkedProductTop);
-    dispatch(updateUserSettingProductTop(!checkedProductTop));
+    if (!userSetting.loadProductTop) {
+      dispatch(updateUserSettingProductTop(!userSetting.product.productTop));
+    }
   };
   const handleCheckedProductLowQuantity = (e) => {
-    setCheckedProductLowQuantity(!checkedProductLowQuantity);
-    dispatch(updateUserSettingProductLowQuantity(!checkedProductLowQuantity));
+    if (!userSetting.loadProductLowQuantity) {
+      dispatch(
+        updateUserSettingProductLowQuantity(
+          !userSetting.product.productLowQuantity
+        )
+      );
+    }
   };
   const handleCheckedProductTopQuantity = (e) => {
-    setCheckedProductTopQuantity(!checkedProductTopQuantity);
-    dispatch(updateUserSettingProductTopQuantity(!checkedProductTopQuantity));
+    if (!userSetting.loadProductTopQuantity) {
+      dispatch(
+        updateUserSettingProductTopQuantity(
+          !userSetting.product.productTopQuantity
+        )
+      );
+    }
   };
 
   const handleChangeCategoryQuantity = () => {
-    dispatch(
-      updateUserSettingCategoryQuantity(!userSetting.category.categoryQuantity)
-    );
+    if (!userSetting.loadCategoryQuantity) {
+      dispatch(
+        updateUserSettingCategoryQuantity(
+          !userSetting.category.categoryQuantity
+        )
+      );
+    }
   };
   const handleChangeCategoryTopQuantity = () => {
-    dispatch(
-      updateUserSettingCategoryTopQuantity(
-        !userSetting.category.categoryTopQuantity
-      )
-    );
+    if (!userSetting.loadCategoryTopQuantity) {
+      dispatch(
+        updateUserSettingCategoryTopQuantity(
+          !userSetting.category.categoryTopQuantity
+        )
+      );
+    }
   };
   const handleChangeCategoryHistory = () => {
-    dispatch(
-      updateUserSettingCategoryHistory(!userSetting.category.categoryHistory)
-    );
+    if (!userSetting.loadCategoryHistory) {
+      dispatch(
+        updateUserSettingCategoryHistory(!userSetting.category.categoryHistory)
+      );
+    }
   };
 
   const renderShowSetting = () => {
@@ -242,15 +267,28 @@ function Navbar() {
                           cursor: "pointer",
                         }}
                         onChange={hanleCheckedProductHistory}
-                        checked={checkedProductHistory}
+                        checked={userSetting.product.productHistory}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        History Produk
-                      </label>
+
+                      {userSetting.loadProductHistory ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          History Produk
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -265,15 +303,28 @@ function Navbar() {
                           cursor: "pointer",
                         }}
                         onChange={handleCheckedProductQuantity}
-                        checked={checkedProductQuantity}
+                        checked={userSetting.product.productQuantity}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Jumlah Produk
-                      </label>
+
+                      {userSetting.loadProductQuantity ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Jumlah Produk
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -288,15 +339,27 @@ function Navbar() {
                           cursor: "pointer",
                         }}
                         onChange={handleCheckedProductTop}
-                        checked={checkedProductTop}
+                        checked={userSetting.product.productTop}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Produk Terlaris
-                      </label>
+                      {userSetting.loadProductTop ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Produk Terlaris
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -311,15 +374,28 @@ function Navbar() {
                           cursor: "pointer",
                         }}
                         onChange={handleCheckedProductLowQuantity}
-                        checked={checkedProductLowQuantity}
+                        checked={userSetting.product.productLowQuantity}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Produk Hampir Habis
-                      </label>
+
+                      {userSetting.loadProductLowQuantity ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Produk Hampir Habis
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -334,15 +410,28 @@ function Navbar() {
                           cursor: "pointer",
                         }}
                         onChange={handleCheckedProductTopQuantity}
-                        checked={checkedProductTopQuantity}
+                        checked={userSetting.product.productTopQuantity}
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Produk Termahal
-                      </label>
+
+                      {userSetting.loadProductTopQuantity ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Produk Termahal
+                        </label>
+                      )}
                     </div>
                   </li>
                   {/* <li>
@@ -384,13 +473,25 @@ function Navbar() {
                           userSetting.category.categoryHistory
                         }
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        History Kategori
-                      </label>
+                      {userSetting.loadCategoryHistory ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          History Kategori
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -410,13 +511,25 @@ function Navbar() {
                           userSetting.category.categoryQuantity
                         }
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Jumlah Kategori
-                      </label>
+                      {userSetting.loadCategoryQuantity ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Jumlah Kategori
+                        </label>
+                      )}
                     </div>
                   </li>
                   <li>
@@ -436,13 +549,26 @@ function Navbar() {
                           userSetting.category.categoryTopQuantity
                         }
                       />
-                      <label
-                        className="form-check-label"
-                        htmlFor="checChat"
-                        style={{ cursor: "pointer", fontSize: "15px" }}
-                      >
-                        Kategori Terbanyak
-                      </label>
+
+                      {userSetting.loadCategoryTopQuantity ? (
+                        <div className="loadingio-spinner-ellipsis-b26wzcp70sw">
+                          <div className="ldio-hv1pywbjbrr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <label
+                          className="form-check-label"
+                          htmlFor="checChat"
+                          style={{ cursor: "pointer", fontSize: "15px" }}
+                        >
+                          Kategori Terbanyak
+                        </label>
+                      )}
                     </div>
                   </li>
                 </ul>

@@ -53,6 +53,7 @@ import _debounce from "lodash.debounce";
 function Category() {
   const category = useSelector((state) => state.category);
   const { darkMode } = useSelector((state) => state.darkMode);
+  const userSetting = useSelector((state) => state.userSetting);
   const dispatch = useDispatch();
   const containerRef = useRef(null);
 
@@ -877,203 +878,210 @@ function Category() {
               </div>
             </div>
 
-            <div
-              ref={containerRef}
-              style={{ flexDirection: `${resize <= 385 ? "column" : "row"}` }}
-              className={
-                categoryTotalMax(category.categories).length > 0
-                  ? `${
-                      darkMode
-                        ? "category-content-left-bottom mt-3 bg-content-dark-mode"
-                        : "category-content-left-bottom mt-3"
-                    }`
-                  : `${
-                      darkMode
-                        ? "category-content-left-bottom bg-content-dark-mode mt-3"
-                        : "category-content-left-bottom mt-3"
-                    }`
-              }
-            >
-              <div className="category-content-bag mb-2 mt-2">
-                <div
-                  className={
-                    darkMode
-                      ? "category-content-total border-color-orange-dark-mode"
-                      : "category-content-total"
-                  }
-                >
-                  <h2 className={darkMode ? "text-color-dark-mode" : ""}>
-                    <CountUp
-                      isCounting
-                      end={category.categoryLength && category.categoryLength}
-                      duration={3.3}
-                    />
-                  </h2>
-                </div>
-                <h4
-                  className={
-                    darkMode
-                      ? "text-color-dark-mode grapich-title"
-                      : "grapich-title"
-                  }
-                >
-                  Jumlah Kategori
-                </h4>
-              </div>
-              <div>
-                {dataCategories(category.categories).length > 0 ? (
-                  <PieChart
-                    width={240}
-                    height={250}
-                    style={{
-                      flex: "1",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      margin: "auto",
-                    }}
-                  >
-                    <Pie
-                      dataKey="value"
-                      isAnimationActive={true}
-                      data={dataCategories(category.categories)}
-                      cx={110}
-                      cy={120}
-                      outerRadius={70}
-                      fill={darkMode ? "rgba(255,255,255,.3)" : "#0F66BD"}
-                      label
-                    />
-                    <Tooltip />
-                  </PieChart>
-                ) : null}
-              </div>
-            </div>
-          </div>
-          <div className="category-content-right">
-            {categoryTotalMax(category.categories).length > 0 ? (
+            {userSetting.category.categoryQuantity ? (
               <div
+                ref={containerRef}
+                style={{ flexDirection: `${resize <= 385 ? "column" : "row"}` }}
                 className={
-                  darkMode
-                    ? "category-content-right-top bg-content-dark-mode"
-                    : "category-content-right-top"
+                  categoryTotalMax(category.categories).length > 0
+                    ? `${
+                        darkMode
+                          ? "category-content-left-bottom mt-3 bg-content-dark-mode"
+                          : "category-content-left-bottom mt-3"
+                      }`
+                    : `${
+                        darkMode
+                          ? "category-content-left-bottom bg-content-dark-mode mt-3"
+                          : "category-content-left-bottom mt-3"
+                      }`
                 }
               >
-                <h3 className="grapich-title">Kategori Terbanyak</h3>
-
-                <ComposedChart
-                  width={600}
-                  height={300}
-                  data={categoryTotalMax(category.categories)}
-                  margin={{
-                    top: 30,
-                    right: 10,
-                    bottom: 20,
-                    left: 10,
-                  }}
-                >
-                  <CartesianGrid stroke="#f5f5f5" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  {/* <Legend /> */}
-                  <Bar
-                    dataKey="Jumlah"
-                    barSize={20}
-                    fill={darkMode ? "#e16428" : "#0F66BD"}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="Jumlah"
-                    stroke={darkMode ? "#ff5733" : "#ff7300"}
-                  />
-                </ComposedChart>
+                <div className="category-content-bag mb-2 mt-2">
+                  <div
+                    className={
+                      darkMode
+                        ? "category-content-total border-color-orange-dark-mode"
+                        : "category-content-total"
+                    }
+                  >
+                    <h2 className={darkMode ? "text-color-dark-mode" : ""}>
+                      <CountUp
+                        isCounting
+                        end={category.categoryLength && category.categoryLength}
+                        duration={3.3}
+                      />
+                    </h2>
+                  </div>
+                  <h4
+                    className={
+                      darkMode
+                        ? "text-color-dark-mode grapich-title"
+                        : "grapich-title"
+                    }
+                  >
+                    Jumlah Kategori
+                  </h4>
+                </div>
+                <div>
+                  {dataCategories(category.categories).length > 0 ? (
+                    <PieChart
+                      width={240}
+                      height={250}
+                      style={{
+                        flex: "1",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        margin: "auto",
+                      }}
+                    >
+                      <Pie
+                        dataKey="value"
+                        isAnimationActive={true}
+                        data={dataCategories(category.categories)}
+                        cx={110}
+                        cy={120}
+                        outerRadius={70}
+                        fill={darkMode ? "rgba(255,255,255,.3)" : "#0F66BD"}
+                        label
+                      />
+                      <Tooltip />
+                    </PieChart>
+                  ) : null}
+                </div>
               </div>
             ) : null}
           </div>
+
+          {userSetting.category.categoryTopQuantity ? (
+            <div className="category-content-right">
+              {categoryTotalMax(category.categories).length > 0 ? (
+                <div
+                  className={
+                    darkMode
+                      ? "category-content-right-top bg-content-dark-mode"
+                      : "category-content-right-top"
+                  }
+                >
+                  <h3 className="grapich-title">Kategori Terbanyak</h3>
+
+                  <ComposedChart
+                    width={600}
+                    height={300}
+                    data={categoryTotalMax(category.categories)}
+                    margin={{
+                      top: 30,
+                      right: 10,
+                      bottom: 20,
+                      left: 10,
+                    }}
+                  >
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    {/* <Legend /> */}
+                    <Bar
+                      dataKey="Jumlah"
+                      barSize={20}
+                      fill={darkMode ? "#e16428" : "#0F66BD"}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="Jumlah"
+                      stroke={darkMode ? "#ff5733" : "#ff7300"}
+                    />
+                  </ComposedChart>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
 
-        {category.categoryHistory.length > 0 ? (
-          <div
-            className={
-              darkMode
-                ? "category-content-left-history bg-content-dark-mode"
-                : "category-content-left-history"
-            }
-          >
-            <h3 className="grapich-title">History</h3>
-            <Table
-              striped
-              bordered
-              hover
-              size="sm"
-              responsive="md"
-              className="table-data"
+        {userSetting.category.categoryHistory ? (
+          category.categoryHistory.length > 0 ? (
+            <div
+              className={
+                darkMode
+                  ? "category-content-left-history bg-content-dark-mode"
+                  : "category-content-left-history"
+              }
             >
-              <thead>
-                <tr className="bg-dark text-white">
-                  <th>No.</th>
-                  <th>Oleh</th>
-                  <th>Nama Kategori</th>
-                  <th>Status</th>
-                  <th>Waktu</th>
-                </tr>
-              </thead>
-              <tbody>
-                {category.categoryHistory &&
-                  category.categoryHistory.map((item, i) => {
-                    if (item.status === "Diubah") {
-                      return (
-                        <tr
-                          key={item._id}
-                          className="text-white"
-                          style={{
-                            background: `${darkMode ? "#055e68" : "#20c997"}`,
-                          }}
-                        >
-                          <td>{i + 1}</td>
-                          <td>{item.author.fullName}</td>
-                          <td>{item.name}</td>
-                          <td>{item.status}</td>
-                          <td>{item.time}</td>
-                        </tr>
-                      );
-                    } else if (item.status === "Ditambahkan") {
-                      return (
-                        <tr
-                          key={item._id}
-                          className="text-white"
-                          style={{
-                            background: `${darkMode ? "#22267b" : "#007bff"}`,
-                          }}
-                        >
-                          <td>{i + 1}</td>
-                          <td>{item.author.fullName}</td>
-                          <td>{item.name}</td>
-                          <td>{item.status}</td>
-                          <td>{item.time}</td>
-                        </tr>
-                      );
-                    } else if (item.status === "Dihapus") {
-                      return (
-                        <tr
-                          key={item._id}
-                          className="text-white"
-                          style={{
-                            background: `${darkMode ? "#84142d" : "#dc3545"}`,
-                          }}
-                        >
-                          <td>{i + 1}</td>
-                          <td>{item.author.fullName}</td>
-                          <td>{item.name}</td>
-                          <td>{item.status}</td>
-                          <td>{item.time}</td>
-                        </tr>
-                      );
-                    }
-                  })}
-              </tbody>
-            </Table>
-          </div>
+              <h3 className="grapich-title">History</h3>
+              <Table
+                striped
+                bordered
+                hover
+                size="sm"
+                responsive="md"
+                className="table-data"
+              >
+                <thead>
+                  <tr className="bg-dark text-white">
+                    <th>No.</th>
+                    <th>Oleh</th>
+                    <th>Nama Kategori</th>
+                    <th>Status</th>
+                    <th>Waktu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category.categoryHistory &&
+                    category.categoryHistory.map((item, i) => {
+                      if (item.status === "Diubah") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#055e68" : "#20c997"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      } else if (item.status === "Ditambahkan") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#22267b" : "#007bff"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      } else if (item.status === "Dihapus") {
+                        return (
+                          <tr
+                            key={item._id}
+                            className="text-white"
+                            style={{
+                              background: `${darkMode ? "#84142d" : "#dc3545"}`,
+                            }}
+                          >
+                            <td>{i + 1}</td>
+                            <td>{item.author.fullName}</td>
+                            <td>{item.name}</td>
+                            <td>{item.status}</td>
+                            <td>{item.time}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
+              </Table>
+            </div>
+          ) : null
         ) : null}
       </div>
 

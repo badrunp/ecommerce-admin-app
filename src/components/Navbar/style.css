@@ -472,7 +472,6 @@
   padding: 5px 0;
   position: relative;
   width: 100%;
-  list-style: inherit;
 }
 
 .s-button-h {
@@ -482,6 +481,11 @@
   border-radius: 4px;
   font-size: 14px;
   color: white;
+}
+
+.form-check {
+  position: relative;
+  height: 24px;
 }
 
 .s-main-menu-icon {
