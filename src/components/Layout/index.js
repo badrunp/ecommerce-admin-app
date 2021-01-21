@@ -10,14 +10,20 @@ function Layout(props) {
   const sidebar = useSelector((state) => state.sidebar);
   const { darkMode } = useSelector((state) => state.darkMode);
   const products = useSelector((state) => state.products);
+  const category = useSelector((state) => state.category);
 
   return (
     <>
       <Chat />
       <Sidebar />
       <Navbar />
+      {/* {category.categories.length === 0 && category.load ? (
+        <div className="loading-2">
+          <ImSpinner9 className="loading-2-icon" />
+        </div>
+      ) : null} */}
 
-      {products.load && products.products.length === 0 ? (
+      {products.products.length === 0 || category.categories.length === 0 ? (
         <div className="layout-loading-container">
           <div className="loadingio-spinner-dual-ball-qo0vozo5pwc">
             <div className="ldio-ht0g6nnvd0o">

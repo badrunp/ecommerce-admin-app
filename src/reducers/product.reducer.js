@@ -13,7 +13,6 @@ const initialState = {
   updateGrapich: false,
   productHistory: [],
   loadingSearch: false,
-  load: false,
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +21,6 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: action.payload.bool,
-        load: true,
       };
       break;
     case productConstant.GETALLPRODUCT_SUCCESS:
@@ -30,7 +28,6 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         loadingSearch: false,
-        load: false,
         products: action.payload.products,
         productsS: action.payload.productsS,
         totalData: action.payload.totalData,

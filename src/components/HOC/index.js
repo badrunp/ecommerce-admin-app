@@ -4,17 +4,18 @@ import { Redirect, Route } from "react-router-dom";
 import "./style.css";
 
 function PrivateComp({ component: Component, ...rest }) {
-  const [spinner, setSpinner] = useState(false);
+  const [spinner, setSpinner] = useState(true);
 
   useEffect(() => {
     window.onbeforeunload = (e) => {
+      e.preventDefault();
       setSpinner(true);
     };
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => setSpinner(false), 2000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setSpinner(false), 1000);
+  }, []);
   return (
     <Route
       {...rest}
