@@ -6,11 +6,30 @@ import "./style.css";
 function PrivateComp({ component: Component, ...rest }) {
   const [spinner, setSpinner] = useState(true);
 
+  // useEffect(() => {
+  //   window.onbeforeunload = (e) => {
+  //     e.preventDefault();
+  //     setSpinner(true);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    window.onbeforeunload = (e) => {
-      e.preventDefault();
-      setSpinner(true);
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
     };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    setSpinner(true);
+  };
+
+  useEffect(() => {
+    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+      setSpinner(true);
+    } else {
+      console.info("This page is not reloaded");
+    }
   }, []);
 
   useEffect(() => {

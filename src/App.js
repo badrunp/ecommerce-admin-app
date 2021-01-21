@@ -52,9 +52,22 @@ function App() {
   //   };
   // }, []);
   // const alertUser = (e) => {
-  //   console.log("test");
+  //   e.preventDefault();
+  //   e.returnValue = "";
   // };
 
+  useEffect(() => {
+    // window.onbeforeunload = (e) => {
+    //   console.log("wkwkwkw");
+    // };
+    // if (window.performance) {
+    //   if (performance.navigation.type == 1) {
+    //     alert("This page is reloaded");
+    //   } else {
+    //     alert("This page is not reloaded");
+    //   }
+    // }
+  }, []);
   // useEffect(() => {
   //   let server = baseUrl;
 
