@@ -360,7 +360,7 @@
   z-index: 999;
   background-color: white;
   box-shadow: 0 0 28px rgba(0, 0, 0, 0.08);
-  transition: all 0.05s ease;
+  transition: all 0.4s ease;
   overflow-y: scroll;
 }
 
