@@ -25,12 +25,12 @@ function Layout(props) {
 
       {products.products.length === 0 || category.categories.length === 0 ? (
         <div className="layout-loading-container">
-          <div className="loadingio-spinner-dual-ball-qo0vozo5pwc">
-            <div className="ldio-ht0g6nnvd0o">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+          <div class="spinner-g">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
           </div>
           Mengamil semua data....
         </div>
